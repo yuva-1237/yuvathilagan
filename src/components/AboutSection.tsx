@@ -1,153 +1,169 @@
 import SectionBlock from './SectionBlock';
 import AnimatedAvatar from './AnimatedAvatar';
-import { BookOpen, MapPin, Github, Code, Terminal, Cpu, ShieldCheck } from 'lucide-react';
+import { BookOpen, MapPin, Github, Code, Cpu, Brain, LineChart } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.1,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  }),
+};
 
 const AboutSection = () => {
   return (
     <SectionBlock id="about" title="About me">
-      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
         {/* Left Column - Avatar & Quick Specs */}
-        <div className="w-full lg:w-auto flex flex-col items-center shrink-0">
+        <motion.div
+          className="w-full lg:w-auto flex flex-col items-center shrink-0"
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
           <AnimatedAvatar />
-          
+
           {/* Neobrutalist Info Card */}
-          <div className="w-full max-w-[256px] mt-8 border-2 border-black bg-white p-4 font-mono text-xs space-y-2.5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none">
-            <div className="flex justify-between border-b border-black/10 pb-1.5">
-              <span className="text-black/50">NAME:</span>
-              <span className="font-bold">DV PRASAD</span>
+          <div className="w-full sm:max-w-[256px] mt-6 border-2 border-foreground bg-background p-4 font-mono text-xs space-y-2.5 shadow-brutal rounded-none">
+            <div className="flex justify-between border-b border-foreground/10 pb-1.5">
+              <span className="text-foreground/50">NAME:</span>
+              <span className="font-bold">YUVATHILAGAN</span>
             </div>
-            <div className="flex justify-between border-b border-black/10 pb-1.5">
-              <span className="text-black/50">ROLE:</span>
-              <span className="font-bold text-right">FULL STACK DEV</span>
+            <div className="flex justify-between border-b border-foreground/10 pb-1.5">
+              <span className="text-foreground/50">ROLE:</span>
+              <span className="font-bold text-right">AI & DATA ANALYST</span>
             </div>
-            <div className="flex items-center justify-between border-b border-black/10 pb-1.5">
-              <span className="text-black/50 flex items-center gap-1">
+            <div className="flex items-center justify-between border-b border-foreground/10 pb-1.5">
+              <span className="text-foreground/50 flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5" /> LOC:
               </span>
               <span className="font-bold">INDIA (IST)</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-black/50 flex items-center gap-1">
+              <span className="text-foreground/50 flex items-center gap-1">
                 <Github className="w-3.5 h-3.5" /> GITHUB:
               </span>
               <a
-                href="https://github.com/VARA4u-tech"
+                href="https://github.com/yuva-1237"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-bold underline hover:bg-black hover:text-white px-1 transition-colors duration-150"
+                className="font-bold underline hover:bg-foreground hover:text-background px-1 transition-colors duration-150"
               >
-                @VARA4u-tech
+                @yuva-1237
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column - Bio, Stats & Methodology */}
         <div className="flex-1 w-full">
           <div className="space-y-6">
-            <p className="body-text max-w-3xl">
-              I'm a passionate developer with a deep interest in building clean,
-              performant, and user-centric digital experiences. I believe in the
-              power of minimal design and well-crafted code to communicate ideas
-              effectively.
-            </p>
-            <p className="body-text max-w-3xl">
-              With experience across mobile and web platforms, I bring a unique
-              perspective to every project — blending technical rigor with creative
-              sensibility.
-            </p>
-            <p className="body-text max-w-3xl">
-              I focus on writing well-structured, maintainable code that aligns with modern
-              industry standards. By leveraging contemporary development workflows and
-              robust toolings, I efficiently translate ideas into production-ready software
-              while maintaining clean, scalable, and modular architectures.
-            </p>
+            {[
+              'I am a Computer Science Engineering student with expertise in Python, SQL, Machine Learning, NLP, and Data Analytics.',
+              'I have experience in developing AI applications, dashboards, and web-based solutions through various internships and academic projects.',
+              'My core focus is on building data-driven insights and AI-powered tools that solve complex problems efficiently and cleanly.',
+            ].map((text, i) => (
+              <motion.p
+                key={i}
+                className="body-text max-w-3xl"
+                custom={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.5 }}
+              >
+                {text}
+              </motion.p>
+            ))}
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
-            <div className="border-2 border-black bg-white p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 rounded-none">
-              <div className="font-mono text-3xl font-black">1+</div>
-              <div className="font-mono text-[10px] uppercase tracking-wider text-black/50 mt-1">
-                Years of Experience
-              </div>
-            </div>
-            <div className="border-2 border-black bg-white p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 rounded-none">
-              <div className="font-mono text-3xl font-black">11+</div>
-              <div className="font-mono text-[10px] uppercase tracking-wider text-black/50 mt-1">
-                Projects Completed
-              </div>
-            </div>
-            <div className="border-2 border-black bg-white p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 rounded-none">
-              <div className="font-mono text-3xl font-black">100%</div>
-              <div className="font-mono text-[10px] uppercase tracking-wider text-black/50 mt-1">
-                Code Quality Focus
-              </div>
-            </div>
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-8 md:mt-10">
+            {[
+              { value: '1+', label: 'Years of Experience' },
+              { value: '5+', label: 'Projects Completed' },
+              { value: '100%', label: 'Code Quality Focus' },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                custom={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.4 }}
+                className="border-2 border-foreground bg-background p-2 sm:p-4 shadow-brutal hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 rounded-none"
+              >
+                <div className="font-mono text-2xl sm:text-3xl font-black">{stat.value}</div>
+                <div className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-foreground/50 mt-1 leading-tight">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
           </div>
 
           {/* Core Principles Section */}
-          <div className="mt-8 border-2 border-black bg-white p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-none">
-            <h3 className="font-mono text-xs font-bold tracking-[0.2em] uppercase mb-6 pb-2 border-b-2 border-black flex items-center gap-2">
+          <motion.div
+            className="mt-6 md:mt-8 border-2 border-foreground bg-background p-4 sm:p-6 shadow-[6px_6px_0px_0px_rgba(var(--brutal-black-rgb),1)] rounded-none"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          >
+            <h3 className="font-mono text-xs font-bold tracking-[0.2em] uppercase mb-6 pb-2 border-b-2 border-foreground/20 flex items-center gap-2">
               <Code className="w-4 h-4" />
               // CORE WORKFLOW PRINCIPLES
             </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <div className="font-mono text-xs font-bold uppercase flex items-center gap-2">
-                  <Terminal className="w-3.5 h-3.5 shrink-0" />
-                  Clean Architecture
-                </div>
-                <p className="text-xs text-black/70 leading-relaxed font-light pl-5">
-                  Structuring applications to be modular, robust, and self-documenting for seamless scalability and team collaboration.
-                </p>
-              </div>
 
-              <div className="space-y-2">
-                <div className="font-mono text-xs font-bold uppercase flex items-center gap-2">
-                  <Cpu className="w-3.5 h-3.5 shrink-0" />
-                  High Velocity
-                </div>
-                <p className="text-xs text-black/70 leading-relaxed font-light pl-5">
-                  Optimizing development workflows through contemporary automation tools and structured coding standards.
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <div className="font-mono text-xs font-bold uppercase flex items-center gap-2">
-                  <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
-                  Type Safety
-                </div>
-                <p className="text-xs text-black/70 leading-relaxed font-light pl-5">
-                  Implementing strict TypeScript checking, comprehensive input validation, and predictable state management.
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <div className="font-mono text-xs font-bold uppercase flex items-center gap-2">
-                  <span className="inline-block w-3.5 h-3.5 border-2 border-black shrink-0" />
-                  Responsive Design
-                </div>
-                <p className="text-xs text-black/70 leading-relaxed font-light pl-5">
-                  Developing fluid, pixel-perfect user interfaces that render consistently and gracefully across all screen sizes.
-                </p>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                {
+                  icon: <Brain className="w-3.5 h-3.5 shrink-0" />,
+                  title: 'Problem Solving',
+                  desc: 'Identify challenges and develop practical AI-driven solutions.',
+                },
+                {
+                  icon: <LineChart className="w-3.5 h-3.5 shrink-0" />,
+                  title: 'Data-Driven Thinking',
+                  desc: 'Make decisions based on analysis, experimentation, and insights.',
+                },
+                {
+                  icon: <BookOpen className="w-3.5 h-3.5 shrink-0" />,
+                  title: 'Continuous Learning',
+                  desc: 'Adapt to emerging technologies and continuously improve skills.',
+                },
+                {
+                  icon: <Cpu className="w-3.5 h-3.5 shrink-0" />,
+                  title: 'Scalable Development',
+                  desc: 'Build reliable, maintainable, and production-ready systems.',
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  className="space-y-2"
+                  custom={i}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.5 }}
+                >
+                  <div className="font-mono text-xs font-bold uppercase flex items-center gap-2">
+                    {item.icon}
+                    {item.title}
+                  </div>
+                  <p className="text-xs text-foreground/70 leading-relaxed font-light pl-5">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-          </div>
-
-          {/* Action CTA */}
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="https://durgavaraprasad.hashnode.dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3 px-6 py-3 border-2 border-black bg-white text-black text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-black hover:text-white rounded-none"
-            >
-              <BookOpen className="w-4 h-4" />
-              <span>Read My Technical Blog</span>
-            </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </SectionBlock>

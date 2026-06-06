@@ -1,6 +1,5 @@
-import { useRef, type ReactNode } from 'react';
-import { gsap, ScrollTrigger } from '@/lib/gsap';
-import { useGSAPContext } from '@/hooks/useGSAPContext';
+import { type ReactNode } from 'react';
+import { motion } from 'framer-motion';
 
 interface SectionBlockProps {
   id: string;
@@ -9,66 +8,31 @@ interface SectionBlockProps {
 }
 
 const SectionBlock = ({ id, title, children }: SectionBlockProps) => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useGSAPContext(
-    () => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      // Detect mobile/tablet — reduce motion intensity for performance
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-      // Section title — slides in from left
-      gsap.fromTo(
-        section.querySelector('.gsap-section-title'),
-        { opacity: 0, x: isMobile ? -20 : -40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: isMobile ? 0.6 : 0.9,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 88%',
-            toggleActions: 'play none none none', // never reverse — content stays visible
-            invalidateOnRefresh: true,
-            once: true,
-          },
-        },
-      );
-
-      // Children content — fade + rise
-      gsap.fromTo(
-        section.querySelector('.gsap-section-content'),
-        { opacity: 0, y: isMobile ? 30 : 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: isMobile ? 0.7 : 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 82%',
-            toggleActions: 'play none none none', // never reverse — content stays visible
-            invalidateOnRefresh: true,
-            once: true,
-          },
-        },
-      );
-    },
-    sectionRef,
-    [id],
-  );
-
   return (
     <section
-      ref={sectionRef}
       id={id}
-      className="max-w-6xl mx-auto px-6 py-16 md:py-32"
+      className="max-w-6xl mx-auto px-4 sm:px-6 py-10 md:py-24 lg:py-32"
     >
-      <h2 className="gsap-section-title section-title mb-12">{title}.</h2>
-      <div className="gsap-section-content">{children}</div>
+      {/* Title — drops down from top as you scroll into view */}
+      <motion.h2
+        className="section-title mb-6 md:mb-10 lg:mb-12"
+        initial={{ opacity: 0, y: -60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {title}.
+      </motion.h2>
+
+      {/* Content — rises up from bottom as you scroll into view */}
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+      >
+        {children}
+      </motion.div>
     </section>
   );
 };

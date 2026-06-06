@@ -3,7 +3,7 @@ import TiltCard from './ui/TiltCard';
 import { playHover } from '@/hooks/useSoundEffects';
 
 const GithubStats = () => {
-  const username = 'VARA4u-tech';
+  const username = 'yuva-1237';
 
   // Using the 'react' theme which perfectly matches the user's screenshot
   const statsUrl = `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=react&hide_border=false`;
@@ -14,7 +14,7 @@ const GithubStats = () => {
       <TiltCard maxTilt={5}>
         <div
           onMouseEnter={playHover}
-          className="border-4 border-black bg-[#1a1b27] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-2 h-full flex items-center justify-center overflow-hidden"
+          className="border-2 md:border-4 border-foreground bg-[#1a1b27] shadow-brutal-3d p-2 h-full flex items-center justify-center overflow-hidden"
         >
           <img
             src={statsUrl}
@@ -28,7 +28,7 @@ const GithubStats = () => {
       <TiltCard maxTilt={5}>
         <div
           onMouseEnter={playHover}
-          className="border-4 border-black bg-[#1a1b27] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-2 h-full flex items-center justify-center overflow-hidden"
+          className="border-2 md:border-4 border-foreground bg-[#1a1b27] shadow-brutal-3d p-2 h-full flex items-center justify-center overflow-hidden"
         >
           <img
             src={langsUrl}

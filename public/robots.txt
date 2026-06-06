@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vara-portfolio.vercel.app/sitemap.xml
+Sitemap: https://yuvathilagan.vercel.app/sitemap.xml

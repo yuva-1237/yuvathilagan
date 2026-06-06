@@ -4,8 +4,11 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ReactLenis, useLenis } from 'lenis/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ScrollTrigger } from '@/lib/gsap';
+// Theme switching removed in favor of a single premium dark palette.
+import { useAccentColor } from '@/hooks/useAccentColor';
+import LoadingScreen from '@/components/LoadingScreen';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
 
@@ -42,34 +45,40 @@ const LenisScrollTriggerBridge = () => {
   return null;
 };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <ReactLenis
-        root
-        options={{
-          duration: 1.6,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true,
-          wheelMultiplier: 0.9,
-          // On touch devices Lenis uses native scroll (best for iOS Safari)
-          touchMultiplier: 1.5,
-        }}
-      >
-        {/* Bridge must be inside ReactLenis so useLenis() can access the instance */}
-        <LenisScrollTriggerBridge />
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </ReactLenis>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const [loading, setLoading] = useState(true);
+  useAccentColor();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <ReactLenis
+          root
+          options={{
+            duration: 1.6,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 0.9,
+            // On touch devices Lenis uses native scroll (best for iOS Safari)
+            touchMultiplier: 1.5,
+          }}
+        >
+          {/* Bridge must be inside ReactLenis so useLenis() can access the instance */}
+          <LenisScrollTriggerBridge />
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+          {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+        </ReactLenis>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

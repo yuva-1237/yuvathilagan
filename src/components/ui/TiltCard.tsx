@@ -22,6 +22,7 @@ const TiltCard: React.FC<TiltCardProps> = ({
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
+      if (window.innerWidth < 768) return;
       if (!cardRef.current) return;
 
       const card = cardRef.current;
@@ -47,6 +48,7 @@ const TiltCard: React.FC<TiltCardProps> = ({
   );
 
   const handleMouseEnter = () => {
+    if (window.innerWidth < 768) return;
     setIsHovered(true);
   };
 

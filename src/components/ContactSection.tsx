@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -65,11 +66,11 @@ const ContactSection = () => {
     ''
   ).trim();
   const cleanId = formspreeId.replace('https://formspree.io/f/', '');
-  const isDemoMode =
-    !cleanId ||
-    cleanId === 'YOUR_FORMSPREE_ID' ||
-    cleanId.toLowerCase() === 'placeholder' ||
-    cleanId.toLowerCase() === 'demo';
+  const isFormspreeConfigured =
+    cleanId &&
+    cleanId !== 'YOUR_FORMSPREE_ID' &&
+    cleanId.toLowerCase() !== 'placeholder' &&
+    cleanId.toLowerCase() !== 'demo';
 
   const {
     register,
@@ -130,29 +131,35 @@ const ContactSection = () => {
     localStorage.setItem(RATE_LIMIT_KEY, String(now));
 
     try {
-      if (isDemoMode) {
-        // Simulate network latency in demo mode
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        console.log('Form submitted successfully (Demo Mode):', data);
-      } else {
-        const targetUrl = formspreeId.startsWith('http')
+      let targetUrl = '';
+      const payload: Record<string, string> = { ...data };
+
+      if (isFormspreeConfigured) {
+        targetUrl = formspreeId.startsWith('http')
           ? formspreeId
           : `https://formspree.io/f/${formspreeId}`;
+      } else {
+        // Fallback to FormSubmit.co to deliver to the profile email address
+        targetUrl = `https://formsubmit.co/ajax/${PROFILE.email}`;
+        payload._captcha = 'false';
+        payload._subject = `New Portfolio Message from ${data.name}`;
+      }
 
-        const response = await fetch(targetUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
+      const response = await fetch(targetUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
-        if (!response.ok) {
-          throw new Error(
-            'Could not register submission with Formspree. Try again later.',
-          );
-        }
+      if (!response.ok) {
+        throw new Error(
+          isFormspreeConfigured
+            ? 'Could not register submission with Formspree. Try again later.'
+            : 'Could not deliver the message. Please try again later.',
+        );
       }
 
       // Success sequence
@@ -185,9 +192,15 @@ const ContactSection = () => {
 
   return (
     <SectionBlock id="contact" title="Get in touch">
-      <div className="grid md:grid-cols-2 gap-8 md:gap-20">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-16">
         {/* Left Column: Contact Info */}
-        <div className="space-y-8 md:space-y-10">
+        <motion.div
+          className="space-y-8 md:space-y-10"
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
           <p className="text-foreground/80 leading-relaxed font-light text-lg">
             I'm always interested in hearing about new projects and
             opportunities. Whether you have a question or just want to say hi,
@@ -195,15 +208,17 @@ const ContactSection = () => {
           </p>
 
           <div className="space-y-6">
-            <div className="group flex items-center gap-4 p-4 border border-foreground/10 bg-white/50 hover:border-black transition-colors duration-300 rounded-none">
-              <div className="p-3 bg-black text-white self-start rounded-none">
+            <div className="group flex items-center gap-4 p-4 border border-foreground/10 bg-background/50 hover:border-foreground transition-colors duration-300 rounded-none">
+              <div className="p-2 sm:p-3 bg-foreground text-background self-start rounded-none">
                 <Mail className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-xs uppercase tracking-widest text-foreground/50 mb-1">
                   Email
                 </p>
-                <p className="font-mono text-sm break-all">{PROFILE.email}</p>
+                <p className="font-mono text-xs sm:text-sm break-all">
+                  {PROFILE.email}
+                </p>
               </div>
               <button
                 onClick={copyEmail}
@@ -219,8 +234,8 @@ const ContactSection = () => {
               </button>
             </div>
 
-            <div className="flex items-center gap-4 p-4 border border-foreground/10 bg-white/50 hover:border-black transition-colors duration-300 rounded-none">
-              <div className="p-3 bg-black text-white self-start rounded-none">
+            <div className="flex items-center gap-4 p-4 border border-foreground/10 bg-background/50 hover:border-foreground transition-colors duration-300 rounded-none">
+              <div className="p-2 sm:p-3 bg-foreground text-background self-start rounded-none">
                 <LucideGlobe2 className="w-5 h-5" />
               </div>
               <div>
@@ -236,7 +251,7 @@ const ContactSection = () => {
             <p className="text-xs uppercase tracking-widest text-foreground/50 mb-4">
               Connect
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-3">
               {contactSocials.map((link) => {
                 const Icon = ICON_MAP[link.id];
                 if (!Icon) return null;
@@ -248,7 +263,7 @@ const ContactSection = () => {
                     rel="noopener noreferrer"
                     onClick={playClick}
                     aria-label={link.label}
-                    className="p-3 border border-foreground/20 hover:bg-black hover:text-white transition-all duration-300 hover:-translate-y-1 active:scale-95 touch-manipulation rounded-none"
+                    className="p-2 sm:p-3 border border-foreground/20 hover:bg-foreground hover:text-background transition-all duration-300 hover:-translate-y-1 active:scale-95 touch-manipulation rounded-none"
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -256,16 +271,22 @@ const ContactSection = () => {
               })}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column: Form or Success State */}
-        <div className="w-full">
+        <motion.div
+          className="w-full"
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        >
           {isSubmitted ? (
-            <div className="flex flex-col items-center justify-center p-8 border-2 border-black bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-center space-y-6 animate-fade-in min-h-[400px] rounded-none">
-              <div className="p-4 bg-black border-2 border-black rounded-none text-white animate-pulse">
+            <div className="flex flex-col items-center justify-center p-8 border-2 border-foreground bg-background shadow-brutal-lg text-center space-y-6 animate-fade-in min-h-[400px] rounded-none">
+              <div className="p-4 bg-foreground border-2 border-foreground rounded-none text-background animate-pulse">
                 <CheckCircle className="w-12 h-12" />
               </div>
-              <h3 className="font-mono text-2xl font-black uppercase tracking-wider text-black">
+              <h3 className="font-mono text-2xl font-black uppercase tracking-wider text-foreground">
                 Message Received!
               </h3>
               <p className="text-sm font-light text-foreground/80 leading-relaxed max-w-sm">
@@ -274,18 +295,20 @@ const ContactSection = () => {
                 you as soon as possible.
               </p>
 
-              {isDemoMode && (
+              {!isFormspreeConfigured && (
                 <div className="p-4 bg-amber-50 border border-amber-500 font-mono text-[10px] text-amber-800 text-left space-y-1 max-w-sm rounded-none">
                   <p className="font-bold uppercase tracking-wider text-amber-900 flex items-center gap-1">
-                    <AlertTriangle className="w-3.5 h-3.5" /> Developer Notice:
+                    <AlertTriangle className="w-3.5 h-3.5" /> Live Submission
+                    Notice:
                   </p>
                   <p>
-                    This form is in demo mode because a custom Formspree ID is
-                    not configured.
+                    Your message was sent to <strong>{PROFILE.email}</strong>{' '}
+                    via FormSubmit.
                   </p>
-                  <p className="underline">
-                    Please set `VITE_FORMSPREE_ID` in your `.env` file (which is
-                    ignored by Git) to receive real submissions.
+                  <p className="underline mt-1 font-semibold">
+                    Important: If this is the first submission, the recipient
+                    must check their inbox/spam to confirm the activation link
+                    from FormSubmit.
                   </p>
                 </div>
               )}
@@ -296,7 +319,7 @@ const ContactSection = () => {
                   setIsSubmitted(false);
                   reset();
                 }}
-                className="px-6 py-3 border-2 border-black bg-black text-white font-mono uppercase text-xs tracking-widest font-bold hover:bg-white hover:text-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 active:scale-95 rounded-none"
+                className="px-6 py-3 border-2 border-foreground bg-foreground text-background font-mono uppercase text-xs tracking-widest font-bold hover:bg-background hover:text-foreground hover:shadow-brutal transition-all duration-300 active:scale-95 rounded-none"
               >
                 Send Another Message
               </button>
@@ -445,36 +468,36 @@ const ContactSection = () => {
                   type="submit"
                   disabled={isSubmitting || rateLimited}
                   onClick={playClick}
-                  className="w-full group relative flex items-center justify-center gap-3 px-8 py-4 bg-black text-white font-mono uppercase tracking-widest overflow-hidden transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.2)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] hover:-translate-y-1 active:scale-95 active:shadow-none disabled:opacity-75 disabled:cursor-not-allowed disabled:transform-none rounded-none"
+                  className="w-full group relative flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background font-mono uppercase tracking-widest overflow-hidden transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(var(--brutal-black-rgb),0.2)] hover:shadow-brutal hover:-translate-y-1 active:scale-95 active:shadow-none disabled:opacity-75 disabled:cursor-not-allowed disabled:transform-none rounded-none"
                 >
                   {isSubmitting ? (
                     <>
-                      <span className="relative z-10 font-bold group-hover:text-black transition-colors duration-300">
+                      <span className="relative z-10 font-bold group-hover:text-foreground transition-colors duration-300">
                         Sending...
                       </span>
-                      <Loader2 className="w-4 h-4 relative z-10 animate-spin group-hover:text-black transition-colors duration-300" />
+                      <Loader2 className="w-4 h-4 relative z-10 animate-spin group-hover:text-foreground transition-colors duration-300" />
                     </>
                   ) : rateLimited ? (
                     <>
-                      <span className="relative z-10 font-bold group-hover:text-black transition-colors duration-300">
+                      <span className="relative z-10 font-bold group-hover:text-foreground transition-colors duration-300">
                         Wait {cooldownSeconds}s
                       </span>
-                      <Loader2 className="w-4 h-4 relative z-10 animate-spin group-hover:text-black transition-colors duration-300" />
+                      <Loader2 className="w-4 h-4 relative z-10 animate-spin group-hover:text-foreground transition-colors duration-300" />
                     </>
                   ) : (
                     <>
-                      <span className="relative z-10 font-bold group-hover:text-black transition-colors duration-300">
+                      <span className="relative z-10 font-bold group-hover:text-foreground transition-colors duration-300">
                         Send Message
                       </span>
-                      <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 group-hover:text-black transition-all duration-300" />
+                      <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 group-hover:text-foreground transition-all duration-300" />
                     </>
                   )}
-                  <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-background translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 </button>
               </div>
             </form>
           )}
-        </div>
+        </motion.div>
       </div>
     </SectionBlock>
   );

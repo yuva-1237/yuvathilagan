@@ -1,33 +1,52 @@
 import SectionBlock from './SectionBlock';
+import { motion } from 'framer-motion';
 
 const experiences = [
   {
-    role: 'MERN Stack Developer (Freelance)',
-    company: 'Academy of Tech Masters (AOTMS)',
-    period: '[23DEC 2025 – 23JAN 2026]',
+    role: 'Data Analyst Intern',
+    company: 'CodeAlpha',
+    period: '[2026]',
     description:
-      '🚀Freelance Project – Successfully Delivered Completed a real-world client project with my team using [Tech Stack – e.g., React, Node.js, MongoDB]. Key learnings: 🔹 Building scalable features 🔹 Team collaboration & Git workflows 🔹 Meeting client expectations & deadlines.',
+      'Analyzed 50K+ records using Python, SQL, and Excel. Automated reporting workflows reducing manual effort by 35%. Performed Exploratory Data Analysis (EDA) and generated actionable business insights.',
   },
   {
-    role: 'Generative AI & Prompt Engineering Intern',
-    company: 'Blackbuck Engineers',
-    period: '[MAY 2025 – JUL 2025]',
+    role: 'UI Developer Intern',
+    company: 'Thenam Software Solutions',
+    period: '[2025]',
     description:
-      'Completed a 120-hour Short-Term Internship program focusing on ChatGPT, Prompt Engineering, and Generative AI. Developed expertise in designing structured prompt templates, leveraging Large Language Models, and integrating Generative AI workflows into application development.',
+      'Converted wireframes into responsive web applications. Developed reusable UI components. Improved overall usability and user experience.',
+  },
+  {
+    role: 'Graphic Designer Intern',
+    company: 'Thenam Software Solutions',
+    period: '[2026]',
+    description:
+      'Designed visually engaging graphics and marketing materials. Created brand-consistent designs across digital platforms. Enhanced user engagement through effective visual communication.',
+  },
+  {
+    role: 'Software Developer Intern',
+    company: 'Slesea Digital',
+    period: '[2025]',
+    description:
+      'Built and optimized web application features. Developed responsive interfaces using HTML, CSS, and JavaScript.',
   },
 ];
 
 const ExperienceSection = () => (
   <SectionBlock id="experience" title="Experience">
-    <div className="space-y-12">
-      {experiences.map((exp) => (
-        <div
+    <div className="space-y-8 md:space-y-12">
+      {experiences.map((exp, idx) => (
+        <motion.div
           key={exp.role}
-          className="relative pl-8 md:pl-0 border-l md:border-l-0 border-black/20 md:grid md:grid-cols-[1fr_2fr] md:gap-8 pb-12 last:pb-0"
+          initial={{ opacity: 0, x: idx % 2 === 0 ? -60 : 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: idx * 0.08 }}
+          className="relative pl-8 md:pl-0 border-l md:border-l-0 border-foreground/20 md:grid md:grid-cols-[1fr_2fr] md:gap-8 pb-8 md:pb-12 last:pb-0"
         >
-          <div className="md:text-right md:pr-8 md:border-r border-black/20 relative">
-            <div className="hidden md:block absolute top-1 -right-[5px] w-[9px] h-[9px] rounded-none bg-black"></div>
-            <div className="md:hidden absolute top-1 -left-[5px] w-[9px] h-[9px] rounded-none bg-black"></div>
+          <div className="md:text-right md:pr-8 md:border-r border-foreground/20 relative">
+            <div className="hidden md:block absolute top-1 -right-[5px] w-[9px] h-[9px] rounded-none bg-foreground"></div>
+            <div className="md:hidden absolute top-1 -left-[5px] w-[9px] h-[9px] rounded-none bg-foreground"></div>
 
             <h4 className="font-mono text-xs tracking-widest text-foreground/60 uppercase mb-1">
               {exp.period}
@@ -44,7 +63,7 @@ const ExperienceSection = () => (
             </h3>
             <p className="body-text text-sm">{exp.description}</p>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   </SectionBlock>

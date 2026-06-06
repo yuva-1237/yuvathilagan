@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import {
   Code2,
-  Smartphone,
   Server,
   Cpu,
   Wrench,
@@ -15,80 +14,88 @@ import { playHover } from '@/hooks/useSoundEffects';
 
 const skillCategories = [
   {
-    title: 'Frontend Development',
+    title: 'Core Programming',
     icon: <Code2 className="w-5 h-5" />,
     color: 'bg-blue-50',
     skills: [
-      'React',
-      'TypeScript',
+      'Python',
+      'Java',
+      'C',
+      'C++',
       'JavaScript',
-      'Tailwind CSS',
-      'Zustand',
-      'TanStack Query',
-      'Framer Motion',
-      'Shadcn UI',
-      'Vite',
     ],
   },
   {
-    title: 'Mobile Engineering',
-    icon: <Smartphone className="w-5 h-5" />,
-    color: 'bg-green-50',
-    skills: [
-      'Riverpod',
-      'Material Design',
-      'Mobile UI/UX',
-      'Native Integration',
-    ],
-  },
-  {
-    title: 'Backend & Database',
-    icon: <Server className="w-5 h-5" />,
+    title: 'Web Development',
+    icon: <Layers className="w-5 h-5" />,
     color: 'bg-orange-50',
     skills: [
+      'HTML',
+      'CSS',
+      'ReactJS',
+      'Bootstrap',
       'Node.js',
-      'Firebase',
-      'MongoDB',
-      'Hive',
-      'REST APIs',
-      'PostgreSQL',
-      'Auth Systems',
+      'Webflow',
+      'Framer',
+      'SEO',
     ],
   },
   {
-    title: 'Web3 & Intelligence',
+    title: 'AI & Data Science',
     icon: <Cpu className="w-5 h-5" />,
+    color: 'bg-green-50',
+    skills: [
+      'Machine Learning',
+      'NLP',
+      'Data Analytics',
+      'Deep Learning',
+      'Prompt Engineering',
+    ],
+  },
+  {
+    title: 'Databases',
+    icon: <Server className="w-5 h-5" />,
     color: 'bg-purple-50',
     skills: [
-      'Aptos',
-      'Move Lang',
-      'AI Integration',
-      'Prompt Engineering',
-      'Smart Contracts',
-      'Web3.js',
+      'SQL',
+      'Database Design',
+      'Database',
     ],
   },
   {
-    title: 'Tools & Ecosystem',
+    title: 'Design & Tools',
     icon: <Wrench className="w-5 h-5" />,
-    color: 'bg-gray-50',
+    color: 'bg-yellow-50',
     skills: [
+      'Figma',
+      'UI/UX Design',
+      'Graphic Design',
       'Git',
       'GitHub',
-      'Figma',
-      'Vitest',
-      'Vercel',
-      'Docker',
-      'Postman',
-      'Linux CLI',
+      'Power BI',
+      'Excel',
+      'DevOps',
     ],
   },
+  {
+    title: 'Soft Skills',
+    icon: <Zap className="w-5 h-5" />,
+    color: 'bg-gray-50',
+    skills: [
+      'Communication',
+      'Team Collaboration',
+      'Problem Solving',
+      'Leadership',
+      'Adaptability',
+    ],
+  },
+
 ];
 
 const SkillsSection = () => {
   return (
     <SectionBlock id="skills" title="Technical Arsenal">
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-8 md:gap-12">
         {/* Skill Modules */}
         <motion.div
           initial="hidden"
@@ -98,7 +105,7 @@ const SkillsSection = () => {
             visible: { transition: { staggerChildren: 0.1 } },
             hidden: {},
           }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
         >
           {skillCategories.map((category, idx) => (
             <motion.div
@@ -110,10 +117,10 @@ const SkillsSection = () => {
             >
               <div
                 onMouseEnter={playHover}
-                className="group border-2 border-black p-6 bg-white h-full relative rounded-none shadow-brutal-3d hover:shadow-brutal-3d-hover transition-all duration-500"
+                className="group border-2 border-foreground p-4 sm:p-6 bg-background h-full relative rounded-none shadow-brutal-3d hover:shadow-brutal-3d-hover transition-all duration-500"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 border-2 border-black bg-black text-white group-hover:bg-white group-hover:text-black transition-colors rounded-none">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 border-2 border-foreground bg-foreground text-background group-hover:bg-background group-hover:text-foreground transition-colors rounded-none">
                     {category.icon}
                   </div>
                   <h3 className="font-mono text-sm font-bold uppercase tracking-wide">
@@ -125,7 +132,7 @@ const SkillsSection = () => {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-1 border border-black/10 text-[11px] font-mono hover:border-black hover:bg-black/5 transition-all cursor-default rounded-none"
+                      className="px-2 py-1 border border-foreground/10 text-[11px] font-mono hover:border-foreground hover:bg-foreground/5 transition-all cursor-default rounded-none"
                     >
                       {skill}
                     </span>
@@ -144,7 +151,7 @@ const SkillsSection = () => {
           >
             <div
               onMouseEnter={playHover}
-              className="h-full border-2 border-black p-6 bg-black/5 flex flex-col items-center justify-center text-center opacity-60 hover:opacity-100 transition-all rounded-none"
+              className="h-full border-2 border-foreground p-4 sm:p-6 bg-foreground/5 flex flex-col items-center justify-center text-center opacity-60 hover:opacity-100 transition-all rounded-none"
             >
               <Box className="w-8 h-8 mb-4 opacity-20" />
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] font-medium">
@@ -155,18 +162,24 @@ const SkillsSection = () => {
         </motion.div>
 
         {/* Activity Section */}
-        <div className="w-full pt-12 border-t-4 border-black border-dashed">
+        <motion.div
+          className="w-full pt-8 md:pt-12 border-t-4 border-foreground border-dashed"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-4">
               <h3 className="text-sm font-mono font-bold uppercase tracking-[0.2em] flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-none animate-pulse" />
                 Live Pulse
               </h3>
-              <div className="h-[2px] flex-1 bg-black/10"></div>
+              <div className="h-[2px] flex-1 bg-foreground/10"></div>
             </div>
             <GithubGraph />
           </div>
-        </div>
+        </motion.div>
       </div>
     </SectionBlock>
   );

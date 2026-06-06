@@ -7,7 +7,9 @@ import {
   Mail,
   ChevronDown,
   InstagramIcon,
-  BookOpen,
+  Figma,
+  Pin,
+  MessageCircle,
   Eye,
   Download,
 } from 'lucide-react';
@@ -18,17 +20,19 @@ import { useGSAPContext } from '@/hooks/useGSAPContext';
 import ResumeModal from './ResumeModal';
 
 const roles = [
-  'Vibe Coder',
-  'React Engineer',
-  'Blockchain Builder',
-  'Full-Stack Creator',
+  'AI Engineer',
+  'Data Analyst',
+  'Full Stack Developer',
+  'Prompt Engineer',
 ];
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   github: Github,
   linkedin: Linkedin,
   instagram: InstagramIcon,
-  blog: BookOpen,
+  pinterest: Pin,
+  figma: Figma,
+  whatsapp: MessageCircle,
   email: Mail,
 };
 
@@ -198,7 +202,10 @@ const HeroSection = () => {
       if (timestamp - lastFrameTime < frameInterval) return;
       lastFrameTime = timestamp;
 
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.06)';
+      const isDark = document.documentElement.classList.contains('dark');
+      ctx.fillStyle = isDark
+        ? 'rgba(13, 13, 13, 0.06)'
+        : 'rgba(255, 255, 255, 0.06)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       dropObjects.forEach((drop, i) => {
@@ -207,12 +214,16 @@ const HeroSection = () => {
         const opacity = 0.05 + drop.depth * 0.25;
 
         ctx.font = `${currentFontSize}px monospace`;
-        ctx.fillStyle = `rgba(0, 0, 0, ${opacity * 1.5})`;
+        ctx.fillStyle = isDark
+          ? `rgba(255, 255, 255, ${opacity * 1.5})`
+          : `rgba(0, 0, 0, ${opacity * 1.5})`;
         ctx.fillText(char, i * fontSize, drop.y * fontSize);
 
         if (drop.y > 1) {
           const trailChar = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
+          ctx.fillStyle = isDark
+            ? `rgba(255, 255, 255, ${opacity})`
+            : `rgba(0, 0, 0, ${opacity})`;
           ctx.fillText(trailChar, i * fontSize, (drop.y - 1) * fontSize);
         }
 
@@ -249,7 +260,7 @@ const HeroSection = () => {
   return (
     <section
       ref={heroRef}
-      className="min-h-screen flex flex-col justify-center items-center relative px-6 overflow-hidden pb-12"
+      className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 overflow-hidden pb-12"
     >
       <motion.canvas
         ref={canvasRef}
@@ -258,43 +269,28 @@ const HeroSection = () => {
         aria-hidden="true"
       />
 
-      {/* Top-left code comment */}
-      <div className="gsap-corner absolute top-28 left-6 md:left-10 z-10 hidden md:block">
-        <p className="font-mono text-xs text-foreground/90 leading-relaxed font-medium">
-          // portfolio.tsx
-          <br />
-          // version: 3.0.0
-          <br />
-          // status: production
-          <br />
-          // last_build: {new Date().toISOString().split('T')[0]}
-        </p>
-      </div>
+      {/* portfolio metadata removed */}
 
       {/* Top-right line numbers */}
-      <div className="gsap-corner absolute top-28 right-6 md:right-10 z-10 hidden md:block">
-        <p className="font-mono text-xs text-foreground/80 leading-relaxed text-right font-medium">
-          {Array.from({ length: 6 }, (_, i) => (
-            <span key={i} className="block">
-              {String(i + 1).padStart(3, '0')}
-            </span>
-          ))}
-        </p>
-      </div>
+      {/* line numbers removed */}
 
       {/* Main content */}
-      <div className="text-center relative z-10 pt-24 md:pt-20">
+      <div className="text-center relative z-10 pt-20 md:pt-16 w-full max-w-2xl">
         {/* Name — GSAP animates each line */}
-        <h1
-          className="heading-brutal leading-[0.85] overflow-hidden"
-          style={{ fontSize: 'clamp(65px, 13vw, 140px)' }}
-        >
-          <div className="gsap-name-line glitch-text" data-text="Durga Vara">
-            Durga Vara
+        <h1 className="heading-brutal text-center leading-[0.88] tracking-[-0.03em] overflow-hidden">
+          <div
+            className="gsap-name-line glitch-text"
+            data-text="YUVA"
+            style={{ fontSize: 'clamp(56px, 10vw, 140px)' }}
+          >
+            YUVA
           </div>
-          <br />
-          <div className="gsap-name-line glitch-text" data-text="Prasad.">
-            <span className="text-foreground/20">Prasad.</span>
+          <div
+            className="gsap-name-line glitch-text mt-3 text-foreground/90"
+            data-text="THILAGAN"
+            style={{ fontSize: 'clamp(42px, 7vw, 96px)' }}
+          >
+            THILAGAN
           </div>
         </h1>
 
@@ -319,22 +315,27 @@ const HeroSection = () => {
         </div>
 
         {/* Tech tags */}
-        <div className="flex flex-wrap gap-2 justify-center mt-8 max-w-md mx-auto">
-          {['Flutter', 'React', 'TypeScript', 'Firebase', 'AI', 'Node.js'].map(
-            (tech) => (
-              <span
-                key={tech}
-                className="gsap-tag inline-block px-3 py-1 font-mono text-xs border-2 border-foreground/40 text-foreground/80 font-medium tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300 cursor-default rounded-none"
-                onMouseEnter={playHover}
-              >
-                {tech}
-              </span>
-            ),
-          )}
+        <div className="flex flex-wrap gap-2 justify-center mt-6 md:mt-8 px-4 w-full max-w-xs sm:max-w-md mx-auto">
+          {[
+            'Python',
+            'Machine Learning',
+            'SQL',
+            'Data Analytics',
+            'React',
+            'Power BI',
+          ].map((tech) => (
+            <span
+              key={tech}
+              className="gsap-tag inline-block px-2 py-1 sm:px-3 sm:py-1 font-mono text-[10px] sm:text-xs border-2 border-foreground/40 text-foreground/80 font-medium tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300 cursor-default rounded-none"
+              onMouseEnter={playHover}
+            >
+              {tech}
+            </span>
+          ))}
         </div>
 
         {/* Social links */}
-        <div className="flex gap-4 justify-center mt-10">
+        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mt-8 px-4">
           {SOCIAL_LINKS.map((link) => {
             const Icon = ICON_MAP[link.id];
             if (!Icon) return null;
@@ -347,9 +348,9 @@ const HeroSection = () => {
                     rel="noopener noreferrer"
                     aria-label={link.label}
                     onClick={playClick}
-                    className="group relative inline-flex items-center justify-center p-3 border-2 border-black bg-white text-black transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-black hover:text-white rounded-none"
+                    className="group relative inline-flex items-center justify-center p-2 sm:p-3 border-2 border-foreground bg-background text-foreground transition-all duration-300 shadow-brutal hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-foreground hover:text-background rounded-none"
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </a>
                 </Magnetic>
               </div>
@@ -358,7 +359,7 @@ const HeroSection = () => {
         </div>
 
         {/* Resume buttons — View (opens modal) + Download */}
-        <div className="gsap-resume mt-10 flex flex-wrap items-center justify-center gap-3">
+        <div className="gsap-resume mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 px-4 w-full">
           {/* Primary: View Resume */}
           <Magnetic strength={0.1}>
             <button
@@ -367,7 +368,7 @@ const HeroSection = () => {
                 setIsResumeOpen(true);
               }}
               aria-label="View resume PDF preview"
-              className="group relative inline-flex items-center gap-2 px-8 py-4 border-2 border-black bg-black text-white text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.2)] hover:bg-white hover:text-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-none"
+              className="group relative inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 border-2 border-foreground bg-foreground text-background text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-brutal hover:bg-background hover:text-foreground hover:shadow-brutal-lg rounded-none"
             >
               <Eye className="w-4 h-4" />
               <span>View Resume</span>
@@ -378,13 +379,13 @@ const HeroSection = () => {
           <Magnetic strength={0.1}>
             <a
               href="/resume.pdf"
-              download="Durga_Vara_Prasad_Resume.pdf"
+              download="Yuvathilagan_Resume.pdf"
               onClick={playClick}
               aria-label="Download resume as PDF"
-              className="group relative inline-flex items-center gap-2 px-6 py-4 border-2 border-black bg-white text-black text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.2)] rounded-none"
+              className="group relative inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 sm:px-6 sm:py-4 border-2 border-foreground bg-background text-foreground text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-brutal hover:bg-foreground hover:text-background rounded-none"
             >
               <Download className="w-4 h-4" />
-              <span className="hidden sm:inline">Download</span>
+              <span>Download</span>
             </a>
           </Magnetic>
         </div>
@@ -395,22 +396,13 @@ const HeroSection = () => {
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
         resumeUrl="/resume.pdf"
-        downloadName="Durga_Vara_Prasad_Resume.pdf"
+        downloadName="Yuvathilagan_Resume.pdf"
       />
-
-      {/* Bottom-left info */}
-      <div className="gsap-corner absolute bottom-10 left-6 md:left-10 z-10">
-        <span className="text-foreground text-xs tracking-[0.2em] uppercase font-mono font-medium">
-          {PROFILE.website}
-        </span>
-      </div>
 
       {/* Bottom-right stats */}
       <div className="gsap-corner absolute bottom-10 right-6 md:right-10 z-10 hidden md:block">
         <div className="font-mono text-xs text-foreground text-right leading-relaxed font-medium">
-          <p>const experience = "1+ years";</p>
-          <p>const projects = 11;</p>
-          <p>const passion = Infinity;</p>
+          {/* portfolio stats removed */}
         </div>
       </div>
 

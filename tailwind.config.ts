@@ -20,6 +20,8 @@ export default {
     },
     extend: {
       colors: {
+        black: 'rgb(var(--brutal-black-rgb))',
+        white: 'rgb(var(--brutal-white-rgb))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -63,6 +65,10 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+      },
+      boxShadow: {
+        'brutal': '4px 4px 0px 0px rgb(var(--brutal-black-rgb))',
+        'brutal-lg': '8px 8px 0px 0px rgb(var(--brutal-black-rgb))',
       },
       borderRadius: {
         lg: 'var(--radius)',

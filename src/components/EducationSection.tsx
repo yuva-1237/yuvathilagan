@@ -1,4 +1,5 @@
 import SectionBlock from './SectionBlock';
+import { motion } from 'framer-motion';
 
 interface EducationItem {
   degree: string;
@@ -9,27 +10,13 @@ interface EducationItem {
 
 const education: EducationItem[] = [
   {
-    degree:
-      'Master of Computer Applications (MCA), DVR & Dr. HS MIC College of Technology (Autonomous),Kanchikacherla',
-    school:
-      'Affiliated to Jawaharlal Nehru Technological University Kakinada (JNTUK)',
-    year: '2024 – 2026(Pursuing)',
+    degree: 'Bachelor of Engineering (B.E.) – Computer Science and Engineering',
+    school: 'Prathyusha Engineering College, Anna University',
+    year: 'Expected Graduation: June 2028',
     description: [
-      'Completed industry-focused training in Full Stack Web Development, covering React.js, Node.js, Express.js , MongoDB, and RESTful APIs.',
-      'Acquired practical knowledge of Java Programming, Object-Oriented Programming (OOP), and Data Structures.',
-      'Strengthened skills in Database Management Systems (DBMS), SQL query optimization, and database design.',
-      'Gained hands-on experience in Web Technologies including HTML5, CSS3, JavaScript, and responsive design principles.',
-    ],
-  },
-  {
-    degree:
-      'Bachelor of Science (B.Sc. – Mathematics, Statistics & Computer Science),Gowtham Degree College,Vijayawada',
-    school: 'Affiliated to Krishna University',
-    year: '2021 – 2024',
-    description: [
-      'Built a strong foundation in Computer Science, programming, database management, and problem-solving.',
-      'Developed analytical and quantitative skills through Mathematics and Statistics.',
-      'Gained knowledge of software development concepts, data analysis, and computational thinking.',
+      'Pursuing an undergraduate degree focused on core computer science concepts and engineering practices.',
+      'Developing expertise in Machine Learning, NLP, Data Analytics, and Full Stack Development.',
+      'Actively participating in academic projects and technical hackathons.',
     ],
   },
 ];
@@ -37,10 +24,14 @@ const education: EducationItem[] = [
 const EducationSection = () => (
   <SectionBlock id="education" title="Education">
     <div className="space-y-10">
-      {education.map((item) => (
-        <div
+      {education.map((item, idx) => (
+        <motion.div
           key={item.degree}
-          className="border-l-2 border-black/10 pl-6 py-2 hover:border-black transition-colors duration-300"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: idx * 0.1 }}
+          className="border-l-2 border-foreground/20 pl-6 py-2 hover:border-foreground transition-colors duration-300"
         >
           <h3 className="text-base md:text-lg font-bold text-foreground">
             {item.degree}
@@ -56,14 +47,21 @@ const EducationSection = () => (
           </div>
           {item.description && (
             <ul className="mt-4 space-y-2 list-disc list-outside pl-4 text-sm text-foreground/80">
-              {item.description.map((point, index) => (
-                <li key={index} className="leading-relaxed">
+              {item.description.map((point, i) => (
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: false, amount: 0.5 }}
+                  transition={{ duration: 0.4, delay: 0.2 + i * 0.08, ease: 'easeOut' }}
+                  className="leading-relaxed"
+                >
                   {point}
-                </li>
+                </motion.li>
               ))}
             </ul>
           )}
-        </div>
+        </motion.div>
       ))}
     </div>
   </SectionBlock>
