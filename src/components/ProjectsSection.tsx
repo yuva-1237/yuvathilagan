@@ -6,7 +6,7 @@ import { Badge } from './ui/badge';
 import { playHover, playClick } from '@/hooks/useSoundEffects';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-type FilterKey = 'all' | 'ai' | 'web' | 'data';
+type FilterKey = 'all' | 'ai' | 'web' | 'data' | 'design' | 'python';
 
 interface Project {
   title: string;
@@ -23,6 +23,8 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: 'all', label: 'All' },
   { key: 'ai', label: 'AI & ML' },
   { key: 'web', label: 'Web' },
+  { key: 'design', label: 'Design' },
+  { key: 'python', label: 'Python' },
   { key: 'data', label: 'Data Analytics' },
 ];
 
@@ -83,11 +85,29 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/yuva-1237/Data_Visualization',
   },
   {
+    title: 'Zaymazone',
+    description:
+      'Interactive UI/UX design concept exploring fluid media toggle mechanisms with responsive interactions, modern design systems, and intuitive user flows. Demonstrates expertise in prototyping, visual hierarchy, and interactive component design for seamless digital experiences.',
+    tags: [
+      'Figma',
+      'UI Design',
+      'UX Design',
+      'Design Systems',
+      'Prototype',
+      'Interactive Design',
+      'Visual Design',
+      'Responsive Layout',
+    ],
+    categories: ['design', 'web'],
+    githubUrl: 'https://www.figma.com/@yuvathilagan',
+    liveUrl: 'https://media-toggle-86525314.figma.site/',
+  },
+  {
     title: 'Python Quiz Game',
     description:
       'Interactive Python quiz experience deployed on Vercel, designed for engaging learning and real-time quiz completion.',
     tags: ['Python', 'Interactive', 'Quiz', 'Vercel', 'Game'],
-    categories: ['web'],
+    categories: ['python'],
     githubUrl: 'https://github.com/yuva-1237/python-basic-quiz-game',
   },
 ];

@@ -3,7 +3,7 @@ import SectionBlock from './SectionBlock';
 import { Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-type Category = 'All' | 'Achievement';
+type Category = 'All' | 'Achievement' | 'Certification';
 
 const achievements: {
   title: string;
@@ -89,7 +89,7 @@ const achievements: {
     tag: 'Productivity',
   },
   {
-    title: '32 Public GitHub Repositories',
+    title: '30+ Public GitHub Repositories',
     issuer: 'GitHub Portfolio',
     date: 'Ongoing',
     description:
@@ -121,7 +121,7 @@ const achievements: {
   },
 ];
 
-const CATEGORIES: Category[] = ['All', 'Achievement'];
+const CATEGORIES: Category[] = ['All', 'Achievement', 'Certification'];
 
 const categoryAccent: Record<Exclude<Category, 'All'>, string> = {
   Certification: 'bg-primary text-primary-foreground',

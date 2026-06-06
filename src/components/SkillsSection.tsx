@@ -1,13 +1,5 @@
 import { motion } from 'framer-motion';
-import {
-  Code2,
-  Server,
-  Cpu,
-  Wrench,
-  Zap,
-  Layers,
-  Box,
-} from 'lucide-react';
+import { Code2, Server, Cpu, Wrench, Zap, Layers, Box } from 'lucide-react';
 import SectionBlock from './SectionBlock';
 import GithubGraph from './GithubGraph';
 import { playHover } from '@/hooks/useSoundEffects';
@@ -17,28 +9,13 @@ const skillCategories = [
     title: 'Core Programming',
     icon: <Code2 className="w-5 h-5" />,
     color: 'bg-blue-50',
-    skills: [
-      'Python',
-      'Java',
-      'C',
-      'C++',
-      'JavaScript',
-    ],
+    skills: ['Python', 'Java', 'C', 'C++', 'JavaScript'],
   },
   {
     title: 'Web Development',
     icon: <Layers className="w-5 h-5" />,
     color: 'bg-orange-50',
-    skills: [
-      'HTML',
-      'CSS',
-      'ReactJS',
-      'Bootstrap',
-      'Node.js',
-      'Webflow',
-      'Framer',
-      'SEO',
-    ],
+    skills: ['HTML', 'CSS', 'ReactJS', 'Bootstrap', 'Webflow', 'Framer', 'SEO'],
   },
   {
     title: 'AI & Data Science',
@@ -56,11 +33,7 @@ const skillCategories = [
     title: 'Databases',
     icon: <Server className="w-5 h-5" />,
     color: 'bg-purple-50',
-    skills: [
-      'SQL',
-      'Database Design',
-      'Database',
-    ],
+    skills: ['SQL', 'Database Design', 'Database'],
   },
   {
     title: 'Design & Tools',
@@ -89,7 +62,6 @@ const skillCategories = [
       'Adaptability',
     ],
   },
-
 ];
 
 const SkillsSection = () => {
