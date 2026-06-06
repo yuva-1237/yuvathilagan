@@ -164,7 +164,7 @@ The canvas-based matrix animation in `HeroSection.tsx` uses `requestAnimationFra
 
 ### GitHub Graph
 
-`GithubGraph.tsx` uses `react-github-calendar` with the username `VARA4u-tech`. Update the username prop directly in that file if the GitHub account changes.
+`GithubGraph.tsx` uses `react-github-calendar` with the username `yuva-1237`. Update the username prop directly in that file if the GitHub account changes.
 
 ### No Environment Variables
 
