@@ -11,7 +11,7 @@
 ![AI Engineering](https://img.shields.io/badge/AI%20Engineering-Focused-00d8ff?style=flat-square)
 ![Software Engineering](https://img.shields.io/badge/Software%20Engineering-Product%20Mindset-7c3aed?style=flat-square)
 
-[Live Portfolio](https://yuvathilagan.github.io/) |
+[Live Portfolio](https://yuvathilagan-portfolio.vercel.app/) |
 [Email](mailto:yuvathilagan@gmail.com) |
 [LinkedIn](https://www.linkedin.com/in/yuvathilagan-%E2%80%8C-806681308/) |
 [GitHub](https://github.com/yuva-1237)
@@ -38,14 +38,14 @@ I think like an engineer first: understand the problem, model the system, design
 
 ## Technical Profile
 
-| Area | Current Focus |
-|---|---|
-| AI Engineering | Generative AI, Machine Learning, NLP, prompt engineering, AI product workflows |
-| Agentic Systems | AI agents, task automation, workflow orchestration, tool-assisted reasoning |
-| Data Engineering | Data analytics, reporting, dashboards, structured insight extraction |
+| Area                 | Current Focus                                                                     |
+| -------------------- | --------------------------------------------------------------------------------- |
+| AI Engineering       | Generative AI, Machine Learning, NLP, prompt engineering, AI product workflows    |
+| Agentic Systems      | AI agents, task automation, workflow orchestration, tool-assisted reasoning       |
+| Data Engineering     | Data analytics, reporting, dashboards, structured insight extraction              |
 | Software Engineering | Full stack development, frontend systems, web applications, scalable architecture |
-| Automation | Playwright automation, scraping workflows, repeatable data collection systems |
-| Design Engineering | UI/UX design, Figma prototyping, user-centered interface development |
+| Automation           | Playwright automation, scraping workflows, repeatable data collection systems     |
+| Design Engineering   | UI/UX design, Figma prototyping, user-centered interface development              |
 
 ### Engineering Interests
 
@@ -60,6 +60,7 @@ Scalable Architecture  Automation Systems     Product Engineering
 ## Technical Stack
 
 ### Programming Languages
+
 ![Python](https://img.shields.io/badge/Python-0d1117?style=for-the-badge&logo=python&logoColor=3776AB)
 ![SQL](https://img.shields.io/badge/SQL-0d1117?style=for-the-badge&logo=postgresql&logoColor=00D8FF)
 ![JavaScript](https://img.shields.io/badge/JavaScript-0d1117?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
@@ -68,6 +69,7 @@ Scalable Architecture  Automation Systems     Product Engineering
 ![C++](https://img.shields.io/badge/C++-0d1117?style=for-the-badge&logo=cplusplus&logoColor=00599C)
 
 ### AI & Machine Learning
+
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-111827?style=for-the-badge&logo=tensorflow&logoColor=FF6F00)
 ![NLP](https://img.shields.io/badge/NLP-111827?style=for-the-badge&logo=openai&logoColor=00D8FF)
 ![Generative AI](https://img.shields.io/badge/Generative%20AI-111827?style=for-the-badge&logo=openai&logoColor=white)
@@ -76,6 +78,7 @@ Scalable Architecture  Automation Systems     Product Engineering
 ![TextBlob](https://img.shields.io/badge/TextBlob-111827?style=for-the-badge&logo=python&logoColor=3776AB)
 
 ### Data Science & Analytics
+
 ![Pandas](https://img.shields.io/badge/Pandas-0f172a?style=for-the-badge&logo=pandas&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-0f172a?style=for-the-badge&logo=numpy&logoColor=4DABCF)
 ![Power BI](https://img.shields.io/badge/Power%20BI-0f172a?style=for-the-badge&logo=powerbi&logoColor=F2C811)
@@ -83,6 +86,7 @@ Scalable Architecture  Automation Systems     Product Engineering
 ![Data Visualization](https://img.shields.io/badge/Data%20Visualization-0f172a?style=for-the-badge&logo=tableau&logoColor=E97627)
 
 ### Frontend Engineering
+
 ![React](https://img.shields.io/badge/React-0d1117?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-0d1117?style=for-the-badge&logo=typescript&logoColor=3178C6)
 ![JavaScript](https://img.shields.io/badge/JavaScript-0d1117?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
@@ -91,30 +95,36 @@ Scalable Architecture  Automation Systems     Product Engineering
 ![Vite](https://img.shields.io/badge/Vite-0d1117?style=for-the-badge&logo=vite&logoColor=646CFF)
 
 ### Backend Engineering
+
 ![API Design](https://img.shields.io/badge/API%20Design-111827?style=for-the-badge&logo=fastapi&logoColor=009688)
 ![Web Applications](https://img.shields.io/badge/Web%20Applications-111827?style=for-the-badge&logo=webcomponents.org&logoColor=00D8FF)
 ![System Design](https://img.shields.io/badge/System%20Design-111827?style=for-the-badge&logo=diagramsdotnet&logoColor=F08705)
 
 ### Databases
+
 ![SQL](https://img.shields.io/badge/SQL-0f172a?style=for-the-badge&logo=postgresql&logoColor=00D8FF)
 ![Data Modeling](https://img.shields.io/badge/Data%20Modeling-0f172a?style=for-the-badge&logo=databricks&logoColor=FF3621)
 
 ### Automation & Testing
+
 ![Playwright](https://img.shields.io/badge/Playwright-0d1117?style=for-the-badge&logo=playwright&logoColor=2EAD33)
 ![Web Scraping](https://img.shields.io/badge/Web%20Scraping-0d1117?style=for-the-badge&logo=selenium&logoColor=43B02A)
 ![Automation](https://img.shields.io/badge/Automation-0d1117?style=for-the-badge&logo=autohotkey&logoColor=00D8FF)
 
 ### Cloud & DevOps
+
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-111827?style=for-the-badge&logo=githubpages&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-111827?style=for-the-badge&logo=githubactions&logoColor=2088FF)
 ![Deployment](https://img.shields.io/badge/Deployment-111827?style=for-the-badge&logo=vercel&logoColor=white)
 
 ### Developer Tools
+
 ![Git](https://img.shields.io/badge/Git-0f172a?style=for-the-badge&logo=git&logoColor=F05032)
 ![GitHub](https://img.shields.io/badge/GitHub-0f172a?style=for-the-badge&logo=github&logoColor=white)
 ![VS Code](https://img.shields.io/badge/VS%20Code-0f172a?style=for-the-badge&logo=visualstudiocode&logoColor=007ACC)
 
 ### Design & Prototyping
+
 ![Figma](https://img.shields.io/badge/Figma-0d1117?style=for-the-badge&logo=figma&logoColor=F24E1E)
 ![UI/UX](https://img.shields.io/badge/UI%2FUX-0d1117?style=for-the-badge&logo=materialdesign&logoColor=00D8FF)
 ![Design Systems](https://img.shields.io/badge/Design%20Systems-0d1117?style=for-the-badge&logo=storybook&logoColor=FF4785)
@@ -123,11 +133,11 @@ Scalable Architecture  Automation Systems     Product Engineering
 
 ## Experience
 
-| Timeline | Role | Organization | Engineering Signal |
-|---|---|---|---|
-| 2026 | Data Analyst Intern | CodeAlpha | Data analysis, reporting, insight generation, dashboard-oriented problem solving |
-| 2025 | UI Developer Intern | Thenam Software Solutions | Frontend development, interface implementation, user-focused design execution |
-| 2025 | Software Developer Intern | Slesea Digital | Software development, web-based solutions, engineering workflow exposure |
+| Timeline | Role                      | Organization              | Engineering Signal                                                               |
+| -------- | ------------------------- | ------------------------- | -------------------------------------------------------------------------------- |
+| 2026     | Data Analyst Intern       | CodeAlpha                 | Data analysis, reporting, insight generation, dashboard-oriented problem solving |
+| 2025     | UI Developer Intern       | Thenam Software Solutions | Frontend development, interface implementation, user-focused design execution    |
+| 2025     | Software Developer Intern | Slesea Digital            | Software development, web-based solutions, engineering workflow exposure         |
 
 ---
 
@@ -135,71 +145,71 @@ Scalable Architecture  Automation Systems     Product Engineering
 
 ### IA Zone - AI Chatbot Platform
 
-| Dimension | Details |
-|---|---|
+| Dimension         | Details                                                                                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Problem Statement | Users need intelligent conversational assistance that can respond naturally and support AI-driven interaction workflows. |
-| Architecture | NLP pipeline with a prompt engineering layer for intent handling, response shaping, and conversational flow control. |
-| Technology Stack | NLP, Prompt Engineering, AI application design, Python-oriented AI concepts. |
-| Implementation | Designed the chatbot experience around language understanding, prompt structure, and response quality. |
-| Impact | Improved conversational interactions and demonstrated practical AI product development. |
-| Key Learnings | AI systems need both model-level thinking and product-level interface design to become useful. |
+| Architecture      | NLP pipeline with a prompt engineering layer for intent handling, response shaping, and conversational flow control.     |
+| Technology Stack  | NLP, Prompt Engineering, AI application design, Python-oriented AI concepts.                                             |
+| Implementation    | Designed the chatbot experience around language understanding, prompt structure, and response quality.                   |
+| Impact            | Improved conversational interactions and demonstrated practical AI product development.                                  |
+| Key Learnings     | AI systems need both model-level thinking and product-level interface design to become useful.                           |
 
 ### Exam Forge - Online Examination Platform
 
-| Dimension | Details |
-|---|---|
-| Problem Statement | Online assessments need structured question management, reliable test flow, and a clear interface for users. |
-| Architecture | React-based frontend application with dynamic question handling and modular UI screens. |
-| Technology Stack | React, JavaScript, HTML, CSS, UI development. |
-| Implementation | Built a web-based examination workflow with dynamic question management and organized assessment interactions. |
-| Impact | Created a digital exam system that improves test administration and question handling. |
-| Key Learnings | Educational software requires predictable state management, clear UI hierarchy, and low-friction workflows. |
+| Dimension         | Details                                                                                                        |
+| ----------------- | -------------------------------------------------------------------------------------------------------------- |
+| Problem Statement | Online assessments need structured question management, reliable test flow, and a clear interface for users.   |
+| Architecture      | React-based frontend application with dynamic question handling and modular UI screens.                        |
+| Technology Stack  | React, JavaScript, HTML, CSS, UI development.                                                                  |
+| Implementation    | Built a web-based examination workflow with dynamic question management and organized assessment interactions. |
+| Impact            | Created a digital exam system that improves test administration and question handling.                         |
+| Key Learnings     | Educational software requires predictable state management, clear UI hierarchy, and low-friction workflows.    |
 
 ### Sentiment Analysis Using NLP
 
-| Dimension | Details |
-|---|---|
-| Problem Statement | Raw text data needs classification into meaningful sentiment signals for faster interpretation. |
-| Architecture | Text preprocessing and sentiment classification pipeline using NLP methods and TextBlob. |
-| Technology Stack | Python, NLP, TextBlob, Machine Learning concepts. |
-| Implementation | Built a text classification workflow to analyze sentiment polarity and convert language into interpretable output. |
-| Impact | Delivered a practical NLP system for sentiment extraction and text analytics. |
-| Key Learnings | Simple NLP pipelines can create useful insight when preprocessing, classification, and interpretation are aligned. |
+| Dimension         | Details                                                                                                            |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Problem Statement | Raw text data needs classification into meaningful sentiment signals for faster interpretation.                    |
+| Architecture      | Text preprocessing and sentiment classification pipeline using NLP methods and TextBlob.                           |
+| Technology Stack  | Python, NLP, TextBlob, Machine Learning concepts.                                                                  |
+| Implementation    | Built a text classification workflow to analyze sentiment polarity and convert language into interpretable output. |
+| Impact            | Delivered a practical NLP system for sentiment extraction and text analytics.                                      |
+| Key Learnings     | Simple NLP pipelines can create useful insight when preprocessing, classification, and interpretation are aligned. |
 
 ### FIFA World Cup Analytics Dashboard
 
-| Dimension | Details |
-|---|---|
-| Problem Statement | Sports datasets are difficult to interpret without visual analysis, filtering, and trend exploration. |
-| Architecture | Data transformation and dashboard layer for interactive visual exploration. |
-| Technology Stack | Power BI, Excel, Data Analytics, Data Visualization. |
-| Implementation | Converted football analytics data into dashboard views for performance trends and tournament insights. |
-| Impact | Made FIFA World Cup data easier to understand through interactive reporting and visual storytelling. |
-| Key Learnings | Dashboards are most effective when they reduce complexity and guide decision-making through clear visual structure. |
+| Dimension         | Details                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Problem Statement | Sports datasets are difficult to interpret without visual analysis, filtering, and trend exploration.               |
+| Architecture      | Data transformation and dashboard layer for interactive visual exploration.                                         |
+| Technology Stack  | Power BI, Excel, Data Analytics, Data Visualization.                                                                |
+| Implementation    | Converted football analytics data into dashboard views for performance trends and tournament insights.              |
+| Impact            | Made FIFA World Cup data easier to understand through interactive reporting and visual storytelling.                |
+| Key Learnings     | Dashboards are most effective when they reduce complexity and guide decision-making through clear visual structure. |
 
 ### Automated Web Scraping System
 
-| Dimension | Details |
-|---|---|
-| Problem Statement | Manual data extraction is slow, repetitive, and difficult to scale across web-based sources. |
-| Architecture | Browser automation workflow using Playwright for repeatable data collection. |
-| Technology Stack | Playwright, JavaScript, Automation, Web Scraping. |
-| Implementation | Built an automated extraction system for collecting data from web interfaces at scale. |
-| Impact | Reduced repetitive manual effort and improved consistency in large-scale data collection workflows. |
-| Key Learnings | Automation systems need reliable selectors, error handling, and repeatable execution patterns. |
+| Dimension         | Details                                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| Problem Statement | Manual data extraction is slow, repetitive, and difficult to scale across web-based sources.        |
+| Architecture      | Browser automation workflow using Playwright for repeatable data collection.                        |
+| Technology Stack  | Playwright, JavaScript, Automation, Web Scraping.                                                   |
+| Implementation    | Built an automated extraction system for collecting data from web interfaces at scale.              |
+| Impact            | Reduced repetitive manual effort and improved consistency in large-scale data collection workflows. |
+| Key Learnings     | Automation systems need reliable selectors, error handling, and repeatable execution patterns.      |
 
 ---
 
 ## Core Engineering Principles
 
-| Principle | How I Apply It |
-|---|---|
-| Problem Solving | Break ambiguous requirements into clear objectives, constraints, and implementation steps. |
-| Data-Driven Thinking | Use data, dashboards, and measurable signals to guide product and technical decisions. |
-| Continuous Learning | Keep improving across AI, software architecture, data systems, and design engineering. |
-| Scalable Development | Build systems that can evolve beyond the first version. |
-| Clean Architecture | Prefer readable structure, modular components, and maintainable workflows. |
-| Automation First | Automate repetitive tasks when it improves speed, accuracy, and consistency. |
+| Principle            | How I Apply It                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+| Problem Solving      | Break ambiguous requirements into clear objectives, constraints, and implementation steps. |
+| Data-Driven Thinking | Use data, dashboards, and measurable signals to guide product and technical decisions.     |
+| Continuous Learning  | Keep improving across AI, software architecture, data systems, and design engineering.     |
+| Scalable Development | Build systems that can evolve beyond the first version.                                    |
+| Clean Architecture   | Prefer readable structure, modular components, and maintainable workflows.                 |
+| Automation First     | Automate repetitive tasks when it improves speed, accuracy, and consistency.               |
 
 ---
 
@@ -231,21 +241,21 @@ MLOps                     -> experiment tracking, model lifecycle, production AI
 
 ### Coding Activity
 
-| Activity Area | Signal |
-|---|---|
-| AI Systems | Chatbot workflows, NLP pipelines, prompt engineering, sentiment analysis |
-| Software Products | React applications, portfolio systems, online examination workflows |
-| Data Solutions | Power BI dashboards, Excel analysis, insight reporting, data visualization |
-| Automation | Playwright scraping, browser automation, repeatable extraction workflows |
+| Activity Area     | Signal                                                                     |
+| ----------------- | -------------------------------------------------------------------------- |
+| AI Systems        | Chatbot workflows, NLP pipelines, prompt engineering, sentiment analysis   |
+| Software Products | React applications, portfolio systems, online examination workflows        |
+| Data Solutions    | Power BI dashboards, Excel analysis, insight reporting, data visualization |
+| Automation        | Playwright scraping, browser automation, repeatable extraction workflows   |
 
 ### Engineering Metrics
 
-| Metric | Signal |
-|---|---|
-| Primary Engineering Domains | AI Engineering, Software Engineering, Data Analytics, Automation |
-| Product Surface | AI apps, dashboards, full stack web systems, automated data workflows |
-| Repository Focus | Portfolio, applied projects, technical documentation, project iteration |
-| Collaboration Readiness | Open to engineering collaboration, internships, AI product work, and software projects |
+| Metric                      | Signal                                                                                 |
+| --------------------------- | -------------------------------------------------------------------------------------- |
+| Primary Engineering Domains | AI Engineering, Software Engineering, Data Analytics, Automation                       |
+| Product Surface             | AI apps, dashboards, full stack web systems, automated data workflows                  |
+| Repository Focus            | Portfolio, applied projects, technical documentation, project iteration                |
+| Collaboration Readiness     | Open to engineering collaboration, internships, AI product work, and software projects |
 
 ### Repository Statistics
 
@@ -262,15 +272,15 @@ MLOps                     -> experiment tracking, model lifecycle, production AI
 
 ## Contact
 
-| Channel | Link |
-|---|---|
-| Email | [yuvathilagan@gmail.com](mailto:yuvathilagan@gmail.com) |
-| LinkedIn | [Yuvathilagan](https://www.linkedin.com/in/yuvathilagan-%E2%80%8C-806681308/) |
-| GitHub | [@yuva-1237](https://github.com/yuva-1237) |
-| Instagram | [@_y_u_v_a_10_](https://www.instagram.com/_y_u_v_a_10_/) |
-| Pinterest | [@ythilagan](https://in.pinterest.com/ythilagan/) |
-| Figma | [@yuvathilagan](https://www.figma.com/@yuvathilagan) |
-| WhatsApp | [+91 7200576053](https://wa.me/917200576053) |
+| Channel   | Link                                                                          |
+| --------- | ----------------------------------------------------------------------------- |
+| Email     | [yuvathilagan@gmail.com](mailto:yuvathilagan@gmail.com)                       |
+| LinkedIn  | [Yuvathilagan](https://www.linkedin.com/in/yuvathilagan-%E2%80%8C-806681308/) |
+| GitHub    | [@yuva-1237](https://github.com/yuva-1237)                                    |
+| Instagram | [@_y_u_v_a_10_](https://www.instagram.com/_y_u_v_a_10_/)                      |
+| Pinterest | [@ythilagan](https://in.pinterest.com/ythilagan/)                             |
+| Figma     | [@yuvathilagan](https://www.figma.com/@yuvathilagan)                          |
+| WhatsApp  | [+91 7200576053](https://wa.me/917200576053)                                  |
 
 <div align="center">
 
