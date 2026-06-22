@@ -31,8 +31,76 @@ const FILTERS: { key: FilterKey; label: string }[] = [
 // ─── Project data ────────────────────────────────────────────────────────────
 const projects: Project[] = [
   {
-    title: 'Exam Forge',
+    title: 'Project Hail Mary',
     isNew: true,
+    description:
+      'Autonomous Multi-Agent AI Decision Intelligence Platform designed for high-risk, latency-sensitive deep-space exploration. Simulates telemetry anomalies, runs Monte Carlo risk simulations against a Digital Twin, and coordinates specialized LLM agents (Commander, Safety, Resource, Navigation, Science) to determine explainable safety resolutions.',
+    tags: [
+      'React',
+      'TypeScript',
+      'Three.js',
+      'React Three Fiber',
+      'Gemini API',
+      'OpenAI API',
+      'Multi-Agent Systems',
+    ],
+    categories: ['ai', 'web'],
+    githubUrl: 'https://github.com/yuva-1237/Project_hail_mary',
+  },
+  {
+    title: 'BotZone',
+    isNew: true,
+    description:
+      'Local, 100% private multimodal AI & RAG platform built with Streamlit and Python. Enables users to chat with documents, analyze images using OCR, transcribe audio with Whisper, and run agentic RAG workflows using local Ollama models (Llama 3.3, DeepSeek R1) and LangGraph.',
+    tags: [
+      'Python',
+      'Streamlit',
+      'Ollama',
+      'LangGraph',
+      'RAG',
+      'Whisper',
+      'EasyOCR',
+    ],
+    categories: ['ai', 'python'],
+    githubUrl: 'https://github.com/yuva-1237/BotZone',
+  },
+  {
+    title: 'ARS',
+    isNew: true,
+    description:
+      'Intelligent Applicant Tracking & Resume Screening System (ATS) using a FastAPI backend and Next.js frontend. Integrates the Gemini API for scoring/parsing and Tesseract OCR for text extraction from image resumes, featuring a real-time Copilot Chat.',
+    tags: [
+      'FastAPI',
+      'Next.js',
+      'TypeScript',
+      'Gemini API',
+      'OCR',
+      'ATS',
+      'Python',
+    ],
+    categories: ['ai', 'web', 'python'],
+    githubUrl: 'https://github.com/yuva-1237/ARS',
+  },
+  {
+    title: 'IA Zone',
+    isNew: true,
+    description:
+      'A futuristic, centralized gateway platform for advanced AI assistant workflows, featuring a highly-interactive 3D robot mascot built with Framer Motion, customized theme toggles, and multilingual translation contexts.',
+    tags: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Vite',
+      'Supabase',
+      'TanStack Query',
+      'Framer Motion',
+    ],
+    categories: ['web', 'ai'],
+    githubUrl: 'https://github.com/yuva-1237/ia-zone',
+    liveUrl: 'https://ia-zone.vercel.app/',
+  },
+  {
+    title: 'Exam Forge',
     description:
       'Premium exam platform built with TypeScript and modern UI patterns, delivered as a live GitHub Pages deployment for immersive learning workflows.',
     tags: ['TypeScript', 'React', 'UI Design', 'GitHub Pages', 'Web App'],
