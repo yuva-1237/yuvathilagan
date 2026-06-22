@@ -68,22 +68,27 @@ Scalable Architecture  Automation Systems     Product Engineering
 ![C](https://img.shields.io/badge/C-0d1117?style=for-the-badge&logo=c&logoColor=A8B9CC)
 ![C++](https://img.shields.io/badge/C++-0d1117?style=for-the-badge&logo=cplusplus&logoColor=00599C)
 
-### AI & Machine Learning
+### Generative AI & Large Language Models
 
-![Machine Learning](https://img.shields.io/badge/Machine%20Learning-111827?style=for-the-badge&logo=tensorflow&logoColor=FF6F00)
-![NLP](https://img.shields.io/badge/NLP-111827?style=for-the-badge&logo=openai&logoColor=00D8FF)
 ![Generative AI](https://img.shields.io/badge/Generative%20AI-111827?style=for-the-badge&logo=openai&logoColor=white)
-![AI Agents](https://img.shields.io/badge/AI%20Agents-111827?style=for-the-badge&logo=semanticweb&logoColor=00D8FF)
+![LLMs](https://img.shields.io/badge/LLMs-111827?style=for-the-badge&logo=openai&logoColor=00D8FF)
+![RAG Pipelines](https://img.shields.io/badge/RAG%20Pipelines-111827?style=for-the-badge&logo=googledrive&logoColor=white)
+![Agentic AI](https://img.shields.io/badge/Agentic%20AI-111827?style=for-the-badge&logo=semanticweb&logoColor=00D8FF)
+![LangChain](https://img.shields.io/badge/LangChain-111827?style=for-the-badge&logo=chainlink&logoColor=white)
+![LlamaIndex](https://img.shields.io/badge/LlamaIndex-111827?style=for-the-badge&logo=googlesheets&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/Hugging%20Face-111827?style=for-the-badge&logo=huggingface&logoColor=FEE12B)
 ![Prompt Engineering](https://img.shields.io/badge/Prompt%20Engineering-111827?style=for-the-badge&logo=openai&logoColor=white)
-![TextBlob](https://img.shields.io/badge/TextBlob-111827?style=for-the-badge&logo=python&logoColor=3776AB)
 
-### Data Science & Analytics
+### AI & Machine Learning Core
 
-![Pandas](https://img.shields.io/badge/Pandas-0f172a?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-0f172a?style=for-the-badge&logo=numpy&logoColor=4DABCF)
-![Power BI](https://img.shields.io/badge/Power%20BI-0f172a?style=for-the-badge&logo=powerbi&logoColor=F2C811)
-![Excel](https://img.shields.io/badge/Excel-0f172a?style=for-the-badge&logo=microsoftexcel&logoColor=217346)
-![Data Visualization](https://img.shields.io/badge/Data%20Visualization-0f172a?style=for-the-badge&logo=tableau&logoColor=E97627)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-111827?style=for-the-badge&logo=scikitlearn&logoColor=F7931E)
+![Deep Learning](https://img.shields.io/badge/Deep%20Learning-111827?style=for-the-badge&logo=pytorch&logoColor=EE4C2C)
+![PyTorch](https://img.shields.io/badge/PyTorch-111827?style=for-the-badge&logo=pytorch&logoColor=EE4C2C)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-111827?style=for-the-badge&logo=tensorflow&logoColor=FF6F00)
+![NLP](https://img.shields.io/badge/NLP-111827?style=for-the-badge&logo=openai&logoColor=00D8FF)
+![Computer Vision](https://img.shields.io/badge/Computer%20Vision-111827?style=for-the-badge&logo=opencv&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-111827?style=for-the-badge&logo=opencv&logoColor=5C3EE8)
+![YOLO](https://img.shields.io/badge/YOLO-111827?style=for-the-badge&logo=googlecommon&logoColor=white)
 
 ### Frontend Engineering
 
@@ -94,26 +99,43 @@ Scalable Architecture  Automation Systems     Product Engineering
 ![CSS3](https://img.shields.io/badge/CSS3-0d1117?style=for-the-badge&logo=css3&logoColor=1572B6)
 ![Vite](https://img.shields.io/badge/Vite-0d1117?style=for-the-badge&logo=vite&logoColor=646CFF)
 
-### Backend Engineering
+### Backend & API Engineering
 
-![API Design](https://img.shields.io/badge/API%20Design-111827?style=for-the-badge&logo=fastapi&logoColor=009688)
-![Web Applications](https://img.shields.io/badge/Web%20Applications-111827?style=for-the-badge&logo=webcomponents.org&logoColor=00D8FF)
-![System Design](https://img.shields.io/badge/System%20Design-111827?style=for-the-badge&logo=diagramsdotnet&logoColor=F08705)
+![FastAPI](https://img.shields.io/badge/FastAPI-111827?style=for-the-badge&logo=fastapi&logoColor=009688)
+![REST APIs](https://img.shields.io/badge/REST%20APIs-111827?style=for-the-badge&logo=postman&logoColor=FF6C37)
 
-### Databases
+### Databases & Vector Stores
 
-![SQL](https://img.shields.io/badge/SQL-0f172a?style=for-the-badge&logo=postgresql&logoColor=00D8FF)
-![Data Modeling](https://img.shields.io/badge/Data%20Modeling-0f172a?style=for-the-badge&logo=databricks&logoColor=FF3621)
+![Vector Databases](https://img.shields.io/badge/Vector%20Databases-0f172a?style=for-the-badge&logo=pinecone&logoColor=white)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-0f172a?style=for-the-badge&logo=googlekeep&logoColor=white)
+![FAISS](https://img.shields.io/badge/FAISS-0f172a?style=for-the-badge&logo=facebook&logoColor=00D8FF)
+![Pinecone](https://img.shields.io/badge/Pinecone-0f172a?style=for-the-badge&logo=pinecone&logoColor=EC4899)
+![MongoDB](https://img.shields.io/badge/MongoDB-0f172a?style=for-the-badge&logo=mongodb&logoColor=47A248)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-0f172a?style=for-the-badge&logo=postgresql&logoColor=4169E1)
+![Redis](https://img.shields.io/badge/Redis-0f172a?style=for-the-badge&logo=redis&logoColor=DC382D)
+
+### Data Science & Analytics
+
+![Pandas](https://img.shields.io/badge/Pandas-0f172a?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-0f172a?style=for-the-badge&logo=numpy&logoColor=4DABCF)
+![Power BI](https://img.shields.io/badge/Power%20BI-0f172a?style=for-the-badge&logo=powerbi&logoColor=F2C811)
+![Excel](https://img.shields.io/badge/Excel-0f172a?style=for-the-badge&logo=microsoftexcel&logoColor=217346)
+![Streamlit](https://img.shields.io/badge/Streamlit-0f172a?style=for-the-badge&logo=streamlit&logoColor=FF4B4B)
 
 ### Automation & Testing
 
 ![Playwright](https://img.shields.io/badge/Playwright-0d1117?style=for-the-badge&logo=playwright&logoColor=2EAD33)
 ![Web Scraping](https://img.shields.io/badge/Web%20Scraping-0d1117?style=for-the-badge&logo=selenium&logoColor=43B02A)
-![Automation](https://img.shields.io/badge/Automation-0d1117?style=for-the-badge&logo=autohotkey&logoColor=00D8FF)
 
-### Cloud & DevOps
+### Cloud, DevOps & MLOps
 
-![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-111827?style=for-the-badge&logo=githubpages&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-111827?style=for-the-badge&logo=amazonwebservices&logoColor=232F3E)
+![Azure](https://img.shields.io/badge/Azure-111827?style=for-the-badge&logo=microsoftazure&logoColor=0078D4)
+![GCP](https://img.shields.io/badge/GCP-111827?style=for-the-badge&logo=googlecloud&logoColor=4285F4)
+![Docker](https://img.shields.io/badge/Docker-111827?style=for-the-badge&logo=docker&logoColor=2496ED)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-111827?style=for-the-badge&logo=kubernetes&logoColor=326CE5)
+![MLOps](https://img.shields.io/badge/MLOps-111827?style=for-the-badge&logo=databricks&logoColor=FF3621)
+![MLflow](https://img.shields.io/badge/MLflow-111827?style=for-the-badge&logo=mlflow&logoColor=0194E2)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-111827?style=for-the-badge&logo=githubactions&logoColor=2088FF)
 ![Deployment](https://img.shields.io/badge/Deployment-111827?style=for-the-badge&logo=vercel&logoColor=white)
 
@@ -127,7 +149,7 @@ Scalable Architecture  Automation Systems     Product Engineering
 
 ![Figma](https://img.shields.io/badge/Figma-0d1117?style=for-the-badge&logo=figma&logoColor=F24E1E)
 ![UI/UX](https://img.shields.io/badge/UI%2FUX-0d1117?style=for-the-badge&logo=materialdesign&logoColor=00D8FF)
-![Design Systems](https://img.shields.io/badge/Design%20Systems-0d1117?style=for-the-badge&logo=storybook&logoColor=FF4785)
+
 
 ---
 
@@ -143,16 +165,49 @@ Scalable Architecture  Automation Systems     Product Engineering
 
 ## Engineering Case Studies
 
-### IA Zone - AI Chatbot Platform
+### Project Hail Mary - Autonomous Multi-Agent AI Decision Intelligence
 
 | Dimension         | Details                                                                                                                  |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Problem Statement | Users need intelligent conversational assistance that can respond naturally and support AI-driven interaction workflows. |
-| Architecture      | NLP pipeline with a prompt engineering layer for intent handling, response shaping, and conversational flow control.     |
-| Technology Stack  | NLP, Prompt Engineering, AI application design, Python-oriented AI concepts.                                             |
-| Implementation    | Designed the chatbot experience around language understanding, prompt structure, and response quality.                   |
-| Impact            | Improved conversational interactions and demonstrated practical AI product development.                                  |
-| Key Learnings     | AI systems need both model-level thinking and product-level interface design to become useful.                           |
+| Problem Statement | Deep-space exploratory systems operate with high telemetry complexity under severe speed-of-light communication latency, requiring local autonomous decision-making. |
+| Architecture      | Multi-Agent orchestrator utilizing specialized LLM agents (Commander, Safety, Resource, Navigation, Science) running against a digital twin telemetry simulator and Monte Carlo risk estimator. |
+| Technology Stack  | React, TypeScript, Three.js, React Three Fiber, Gemini API, OpenAI API, Multi-Agent Orchestration.                        |
+| Implementation    | Built an interactive 3D command deck telemetry visualization, live digital twin simulation, and real-time agent reasoning log. |
+| Impact            | Demonstrated zero-latency local diagnostic capability and highly explainable safety resolutions.                         |
+| GitHub Repository | [yuva-1237/Project_hail_mary](https://github.com/yuva-1237/Project_hail_mary)                                             |
+
+### BotZone - Local & Private Multimodal RAG Platform
+
+| Dimension         | Details                                                                                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Problem Statement | Enterprises and users require secure, private, and offline multimodal data interactions without relying on external cloud LLM APIs. |
+| Architecture      | Pipeline connecting local Ollama models (Llama 3.3, DeepSeek R1) with a vector retrieval database and LangGraph workflows. |
+| Technology Stack  | Python, Streamlit, Ollama, LangGraph, RAG, Whisper (speech-to-text), EasyOCR (image text extraction).                    |
+| Implementation    | Built an intuitive local workspace enabling chat with documents, image description, audio transcription, and agentic RAG search. |
+| Impact            | Delivered a 100% private, local-first alternative for complete document intelligence.                                     |
+| GitHub Repository | [yuva-1237/BotZone](https://github.com/yuva-1237/BotZone)                                                                 |
+
+### ARS - Intelligent Resume Screener & ATS Copilot
+
+| Dimension         | Details                                                                                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Problem Statement | Recruiting processes suffer from manual resume processing overhead and lack of unified assessment analytics.             |
+| Architecture      | Client-server setup with a FastAPI backend running Gemini parsing engines and OCR extraction, connected to a Next.js front. |
+| Technology Stack  | FastAPI, Next.js, TypeScript, Python, Gemini API, Tesseract OCR, Tailored Prompt System.                                 |
+| Implementation    | Programmed automated file parsing, text extraction, quantitative score card generation, and an interactive recruiter chatbot. |
+| Impact            | Streamlined candidate vetting with explainable suitability scoring and immediate profile querying.                       |
+| GitHub Repository | [yuva-1237/ARS](https://github.com/yuva-1237/ARS)                                                                         |
+
+### IA Zone - Advanced AI Gateway & Assistant Hub
+
+| Dimension         | Details                                                                                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Problem Statement | Users need centralized access to conversational assistance with interactive, human-like interfaces.                     |
+| Architecture      | Client-side gateway with customized multilingual translation contexts and interactive 3D graphics.                       |
+| Technology Stack  | React, TypeScript, Tailwind CSS, Vite, Supabase, TanStack Query, Framer Motion.                                          |
+| Implementation    | Integrated custom theme controls, real-time multilingual contexts, and a 3D robot companion powered by Framer Motion.    |
+| Impact            | Created an elegant, high-performance gateway for user-facing AI assistant workflows.                                     |
+| Links             | [Source Code](https://github.com/yuva-1237/ia-zone) \| [Live Demo](https://ia-zone.vercel.app/)                          |
 
 ### Exam Forge - Online Examination Platform
 
@@ -163,7 +218,6 @@ Scalable Architecture  Automation Systems     Product Engineering
 | Technology Stack  | React, JavaScript, HTML, CSS, UI development.                                                                  |
 | Implementation    | Built a web-based examination workflow with dynamic question management and organized assessment interactions. |
 | Impact            | Created a digital exam system that improves test administration and question handling.                         |
-| Key Learnings     | Educational software requires predictable state management, clear UI hierarchy, and low-friction workflows.    |
 
 ### Sentiment Analysis Using NLP
 
@@ -174,7 +228,6 @@ Scalable Architecture  Automation Systems     Product Engineering
 | Technology Stack  | Python, NLP, TextBlob, Machine Learning concepts.                                                                  |
 | Implementation    | Built a text classification workflow to analyze sentiment polarity and convert language into interpretable output. |
 | Impact            | Delivered a practical NLP system for sentiment extraction and text analytics.                                      |
-| Key Learnings     | Simple NLP pipelines can create useful insight when preprocessing, classification, and interpretation are aligned. |
 
 ### FIFA World Cup Analytics Dashboard
 
@@ -185,7 +238,6 @@ Scalable Architecture  Automation Systems     Product Engineering
 | Technology Stack  | Power BI, Excel, Data Analytics, Data Visualization.                                                                |
 | Implementation    | Converted football analytics data into dashboard views for performance trends and tournament insights.              |
 | Impact            | Made FIFA World Cup data easier to understand through interactive reporting and visual storytelling.                |
-| Key Learnings     | Dashboards are most effective when they reduce complexity and guide decision-making through clear visual structure. |
 
 ### Automated Web Scraping System
 
@@ -196,7 +248,6 @@ Scalable Architecture  Automation Systems     Product Engineering
 | Technology Stack  | Playwright, JavaScript, Automation, Web Scraping.                                                   |
 | Implementation    | Built an automated extraction system for collecting data from web interfaces at scale.              |
 | Impact            | Reduced repetitive manual effort and improved consistency in large-scale data collection workflows. |
-| Key Learnings     | Automation systems need reliable selectors, error handling, and repeatable execution patterns.      |
 
 ---
 
