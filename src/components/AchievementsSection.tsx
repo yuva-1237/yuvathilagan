@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SectionBlock from './SectionBlock';
 import { Award } from 'lucide-react';
-import { motion } from 'framer-motion';
+import Carousel, { CarouselItemData } from './ReactBitsCarousel';
 
 type Category = 'All' | 'Achievement' | 'Certification';
 
@@ -135,12 +135,36 @@ const categoryBorder: Record<Exclude<Category, 'All'>, string> = {
 
 const AchievementsSection = () => {
   const [active, setActive] = useState<Category>('All');
-  const [hovered, setHovered] = useState<number | null>(null);
+  const [carouselWidth, setCarouselWidth] = useState(400);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 480) {
+        setCarouselWidth(300);
+      } else if (window.innerWidth < 768) {
+        setCarouselWidth(340);
+      } else if (window.innerWidth < 1024) {
+        setCarouselWidth(380);
+      } else {
+        setCarouselWidth(420);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const filtered =
     active === 'All'
       ? achievements
       : achievements.filter((a) => a.category === active);
+
+  // Map achievements to include an id that matches their position in the array
+  const carouselItems: CarouselItemData[] = filtered.map((a) => ({
+    ...a,
+    id: achievements.indexOf(a),
+  }));
 
   return (
     <SectionBlock id="achievements" title="Achievements">
@@ -175,128 +199,24 @@ const AchievementsSection = () => {
         </div>
       </div>
 
-      {/* ── List ─────────────────────────────────────────── */}
-      <div className="border-t-2 border-primary">
-        {filtered.map((item, idx) => (
-          <motion.div
-            key={item.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{
-              duration: 0.5,
-              ease: [0.22, 1, 0.36, 1],
-              delay: idx * 0.07,
-            }}
-            className="group relative border-b-2 border-primary bg-background overflow-hidden"
-            onMouseEnter={() => setHovered(idx)}
-            onMouseLeave={() => setHovered(null)}
-          >
-            {/* ── Accent fill slides up on hover (desktop only) */}
-            <div
-              className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out pointer-events-none hidden sm:block"
-              aria-hidden="true"
+      {/* ── Carousel Container ─────────────────────────────── */}
+      {filtered.length > 0 ? (
+        <div className="relative border-t-2 border-primary pt-10 pb-6 flex items-center justify-center min-h-[500px]">
+          <div style={{ height: '480px', position: 'relative' }} className="w-full flex items-center justify-center">
+            <Carousel
+              items={carouselItems}
+              baseWidth={carouselWidth}
+              autoplay={true}
+              autoplayDelay={4000}
+              pauseOnHover={true}
+              loop={true}
+              round={false}
             />
-
-            {/* ── Thumbnail slides in from right on desktop hover */}
-            <div
-              className="absolute top-0 right-0 h-full w-44 lg:w-56 z-10 overflow-hidden pointer-events-none
-                          translate-x-full group-hover:translate-x-0
-                          transition-transform duration-500 ease-in-out
-                          hidden sm:block"
-              aria-hidden="true"
-            >
-              <img
-                src={item.image}
-                alt=""
-                className="w-full h-full object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
-              <div
-                className={`absolute left-0 top-0 h-full border-l-4 ${categoryBorder[item.category]}`}
-              />
-            </div>
-
-            {/* ═══════════════════════════════════
-                MOBILE layout  (< sm)
-                Small thumbnail always visible + stacked text
-            ════════════════════════════════════ */}
-            <div className="flex sm:hidden items-start gap-3 px-4 py-4 transition-colors">
-              {/* Thumbnail */}
-              <div className="w-16 h-16 shrink-0 overflow-hidden border-2 border-primary/20">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-
-              {/* Text block */}
-              <div className="flex-1 min-w-0">
-                {/* Category + date on same line */}
-                <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                  <span
-                    className={`text-[9px] font-mono font-black px-1.5 py-0.5 leading-none ${categoryAccent[item.category]}`}
-                  >
-                    {item.category.toUpperCase()}
-                  </span>
-                  <span className="font-mono text-[9px] text-foreground/45 tracking-widest uppercase">
-                    {item.date}
-                  </span>
-                </div>
-                <h3 className="font-black text-sm leading-snug tracking-tight mb-0.5 line-clamp-2">
-                  {item.title}
-                </h3>
-                <p className="font-mono text-[10px] text-foreground/55 line-clamp-1">
-                  {item.issuer}
-                </p>
-              </div>
-            </div>
-
-            {/* ═══════════════════════════════════
-                TABLET / DESKTOP layout  (≥ sm)
-                Full row
-            ════════════════════════════════════ */}
-            <div className="hidden sm:flex items-center gap-4 lg:gap-6 px-6 lg:px-8 py-5 lg:py-6 pr-[12rem] lg:pr-[15rem] relative z-20 transition-colors duration-500">
-              {/* Index */}
-              <span className="font-mono text-xs font-bold text-foreground/30 group-hover:text-primary-foreground/40 transition-colors duration-300 w-6 shrink-0 select-none">
-                {String(idx + 1).padStart(2, '0')}
-              </span>
-
-              {/* Category pill */}
-              <span
-                className={`text-[10px] font-mono font-black px-2 py-1 shrink-0 leading-none border border-primary group-hover:border-primary-foreground ${categoryAccent[item.category]} group-hover:bg-primary-foreground group-hover:text-primary transition-all duration-300`}
-              >
-                {item.category.toUpperCase()}
-              </span>
-
-              {/* Title + issuer */}
-              <div className="flex-1 min-w-0">
-                <h3 className="font-black text-base lg:text-lg leading-tight tracking-tight group-hover:text-primary-foreground transition-colors duration-300 line-clamp-1">
-                  {item.title}
-                </h3>
-                <p className="font-mono text-xs text-foreground/55 group-hover:text-primary-foreground/75 transition-colors duration-300 mt-0.5">
-                  {item.issuer}
-                </p>
-              </div>
-
-              {/* Tag chip — desktop only */}
-              <span className="hidden lg:inline-block font-mono text-[10px] border border-primary/20 bg-background/50 group-hover:bg-primary-foreground/10 group-hover:border-primary-foreground/40 px-2 py-1 text-foreground/60 group-hover:text-primary-foreground transition-colors duration-300 shrink-0">
-                {item.tag}
-              </span>
-
-              {/* Date */}
-              <span className="font-mono text-[10px] tracking-widest uppercase text-foreground/45 group-hover:text-primary-foreground/60 transition-colors duration-300 shrink-0">
-                {item.date}
-              </span>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* ── Empty state */}
-      {filtered.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-16 sm:py-24 border-b-2 border-primary text-foreground/30">
+          </div>
+        </div>
+      ) : (
+        /* ── Empty state */
+        <div className="flex flex-col items-center justify-center py-16 sm:py-24 border-t-2 border-b-2 border-primary text-foreground/30">
           <Award className="w-10 h-10 mb-3 opacity-20" />
           <p className="font-mono text-sm">No certificates in this category</p>
         </div>

@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SectionBlock from './SectionBlock';
 import { Badge } from './ui/badge';
 import { playHover, playClick } from '@/hooks/useSoundEffects';
+import ElectricBorder from './ElectricBorder';
+import { useAccentColor, PALETTE_OPTIONS } from '@/hooks/useAccentColor';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type FilterKey = 'all' | 'ai' | 'web' | 'data' | 'design' | 'python';
@@ -205,6 +207,10 @@ const cardVariants = {
 const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState<FilterKey>('all');
   const gridRef = useRef<HTMLDivElement>(null);
+  const { palette } = useAccentColor();
+
+  const currentOption = PALETTE_OPTIONS.find((p) => p.key === palette);
+  const accentColorHex = currentOption ? currentOption.hex : '#10b981';
 
   const filtered =
     activeFilter === 'all'
@@ -287,87 +293,93 @@ const ProjectsSection = () => {
               className="w-full h-full"
               onMouseEnter={playHover}
             >
-              <div className="group relative w-full h-full border-2 border-foreground px-4 sm:px-6 py-6 sm:py-10 flex flex-col justify-between shadow-[6px_6px_0px_0px_rgba(0,0,0,0.3)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-300 bg-background rounded-none min-h-[360px] sm:min-h-[480px]">
-                {/* "Latest Work" badge */}
-                {project.isNew && (
-                  <div className="absolute -top-3 -right-3 bg-foreground text-background px-3 py-1 text-[9px] font-black uppercase tracking-widest border-2 border-foreground z-10 rotate-3 group-hover:rotate-0 transition-transform">
-                    LATEST WORK
-                  </div>
-                )}
+              <ElectricBorder
+                color={accentColorHex}
+                borderRadius={0}
+                className="w-full h-full"
+              >
+                <div className="group relative w-full h-full border-2 border-foreground px-4 sm:px-6 py-6 sm:py-10 flex flex-col justify-between shadow-[6px_6px_0px_0px_rgba(0,0,0,0.3)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-300 bg-background rounded-none min-h-[360px] sm:min-h-[480px]">
+                  {/* "Latest Work" badge */}
+                  {project.isNew && (
+                    <div className="absolute -top-3 -right-3 bg-foreground text-background px-3 py-1 text-[9px] font-black uppercase tracking-widest border-2 border-foreground z-10 rotate-3 group-hover:rotate-0 transition-transform">
+                      LATEST WORK
+                    </div>
+                  )}
 
-                <div>
-                  {/* Category dots */}
-                  <div className="flex gap-1.5 mb-4">
-                    {project.categories.map((cat) => {
-                      const match = FILTERS.find((f) => f.key === cat);
-                      return match ? (
-                        <span
-                          key={cat}
-                          title={match.label}
-                          className="font-mono text-[9px] uppercase tracking-widest px-1.5 py-0.5 border border-foreground/10 bg-foreground/5 text-foreground/50"
+                  <div>
+                    {/* Category dots */}
+                    <div className="flex gap-1.5 mb-4">
+                      {project.categories.map((cat) => {
+                        const match = FILTERS.find((f) => f.key === cat);
+                        return match ? (
+                          <span
+                            key={cat}
+                            title={match.label}
+                            className="font-mono text-[9px] uppercase tracking-widest px-1.5 py-0.5 border border-foreground/10 bg-foreground/5 text-foreground/50"
+                          >
+                            {match.label}
+                          </span>
+                        ) : null;
+                      })}
+                    </div>
+
+                    <div className="flex justify-between items-start mb-6">
+                      <h3 className="font-black text-foreground leading-tight text-lg sm:text-xl">
+                        {project.title}
+                      </h3>
+                    </div>
+
+                    <p className="body-text mb-8 font-normal leading-relaxed text-foreground/80 text-xs line-clamp-6">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {project.tags.slice(0, 8).map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="font-mono text-[9px] font-bold border border-black/5 bg-black/5 px-2 py-0.5 rounded-none"
                         >
-                          {match.label}
+                          {tag}
+                        </Badge>
+                      ))}
+                      {project.tags.length > 8 && (
+                        <span className="text-[9px] font-bold opacity-30">
+                          +{project.tags.length - 8}
                         </span>
-                      ) : null;
-                    })}
+                      )}
+                    </div>
                   </div>
 
-                  <div className="flex justify-between items-start mb-6">
-                    <h3 className="font-black text-foreground leading-tight text-lg sm:text-xl">
-                      {project.title}
-                    </h3>
-                  </div>
-
-                  <p className="body-text mb-8 font-normal leading-relaxed text-foreground/80 text-xs line-clamp-6">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {project.tags.slice(0, 8).map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="secondary"
-                        className="font-mono text-[9px] font-bold border border-black/5 bg-black/5 px-2 py-0.5 rounded-none"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                    {project.tags.length > 8 && (
-                      <span className="text-[9px] font-bold opacity-30">
-                        +{project.tags.length - 8}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Action buttons */}
-                <div className="flex gap-3 mt-auto">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={playClick}
-                    aria-label={`View ${project.title} source code on GitHub`}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border-2 border-foreground bg-background text-[9px] font-black uppercase tracking-widest transition-all duration-300 shadow-[2px_2px_0px_0px] shadow-foreground/50 hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] hover:bg-foreground hover:text-background"
-                  >
-                    <Github className="w-3.5 h-3.5" />
-                    Source
-                  </a>
-                  {project.liveUrl && (
+                  {/* Action buttons */}
+                  <div className="flex gap-3 mt-auto">
                     <a
-                      href={project.liveUrl}
+                      href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={playClick}
-                      aria-label={`View ${project.title} live demo`}
-                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border-2 border-foreground bg-foreground text-background text-[9px] font-black uppercase tracking-widest transition-all duration-300 shadow-[2px_2px_0px_0px] shadow-foreground/50 hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] hover:bg-background hover:text-foreground"
+                      aria-label={`View ${project.title} source code on GitHub`}
+                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border-2 border-foreground bg-background text-[9px] font-black uppercase tracking-widest transition-all duration-300 shadow-[2px_2px_0px_0px] shadow-foreground/50 hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] hover:bg-foreground hover:text-background"
                     >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      Live
+                      <Github className="w-3.5 h-3.5" />
+                      Source
                     </a>
-                  )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={playClick}
+                        aria-label={`View ${project.title} live demo`}
+                        className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border-2 border-foreground bg-foreground text-background text-[9px] font-black uppercase tracking-widest transition-all duration-300 shadow-[2px_2px_0px_0px] shadow-foreground/50 hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] hover:bg-background hover:text-foreground"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        Live
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </ElectricBorder>
             </motion.div>
           ))}
         </AnimatePresence>
