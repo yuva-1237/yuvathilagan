@@ -141,7 +141,7 @@ const BackgroundEffects = () => {
         `hsla(${baseHue + 6},${accent.s},${isDark ? '58%' : '50%'},${a})`,
       geo: (h: number, a: number) =>
         `hsla(${baseHue + h + 18},${accent.s},${isDark ? '68%' : '48%'},${a})`,
-      grid: `hsla(${baseHue + 5},${accent.s},${isDark ? '45%' : '40%'},${isDark ? 0.045 : 0.055})`,
+      grid: `hsla(${baseHue + 5},${accent.s},${isDark ? '45%' : '40%'},${isDark ? 0.015 : 0.02})`,
       ripple: (a: number) =>
         `hsla(${baseHue + 4},${accent.s},${isDark ? '62%' : '55%'},${a})`,
       mouse: `hsla(${baseHue + 12},${accent.s},${isDark ? '55%' : '50%'},0.1)`,
@@ -171,7 +171,7 @@ const BackgroundEffects = () => {
       vx: rand(-0.4, 0.4),
       vy: rand(-0.4, 0.4),
       r: rand(0.8, 1.8), // small pinpoint dots
-      opacity: rand(0.22, 0.45),
+      opacity: rand(0.08, 0.18),
       hue: rand(-25, 25),
     }));
     const LINK_DIST = 120;
@@ -200,7 +200,7 @@ const BackgroundEffects = () => {
       angle: rand(0, TAU),
       spin: rand(-0.006, 0.006),
       sides: pick([3, 4, 6]), // triangle, square, hexagon
-      opacity: rand(0.1, 0.22),
+      opacity: rand(0.03, 0.08),
       hue: rand(-30, 30),
     }));
 
@@ -265,7 +265,7 @@ const BackgroundEffects = () => {
         const dm = Math.hypot(cell.cx - mx, cell.cy - my);
         const prox = Math.max(0, 1 - dm / 220) * 0.5;
 
-        const a = pulse * 0.055 + prox * 0.08;
+        const a = pulse * 0.02 + prox * 0.03;
         ctx.strokeStyle = pal.grid;
         ctx.lineWidth = 0.7;
 
@@ -302,7 +302,7 @@ const BackgroundEffects = () => {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < LINK_DIST) {
-            const lineA = (1 - dist / LINK_DIST) * 0.28;
+            const lineA = (1 - dist / LINK_DIST) * 0.08;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -317,7 +317,7 @@ const BackgroundEffects = () => {
       particles.forEach((p) => {
         const dm = Math.hypot(p.x - mx, p.y - my);
         const prox = Math.max(0, 1 - dm / 100);
-        const a = p.opacity + prox * 0.28;
+        const a = p.opacity + prox * 0.08;
 
         // outer glow ring
         const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 1.8);
@@ -356,12 +356,12 @@ const BackgroundEffects = () => {
             ctx.shadowBlur = 12 + prox * 16;
             ctx.fillStyle = pal
               .colHead(col.hue)
-              .replace('1)', `${(0.52 + prox * 0.38) * gp})`);
+              .replace('1)', `${(0.15 + prox * 0.1) * gp})`);
             ctx.fillText(ch, col.x, cy);
             ctx.shadowBlur = 0;
             ctx.shadowColor = 'transparent';
           } else {
-            const a = Math.max(0, fade * 0.22 + prox * 0.12) * gp;
+            const a = Math.max(0, fade * 0.08 + prox * 0.05) * gp;
             ctx.fillStyle = pal.colBody(col.hue, a);
             ctx.fillText(ch, col.x, cy);
           }
@@ -395,7 +395,7 @@ const BackgroundEffects = () => {
         const dm = Math.hypot(s.x - mx, s.y - my);
         const prox = Math.max(0, 1 - dm / 130);
         const pulse = 0.6 + 0.4 * Math.sin(frame * s.spin * 12 + s.angle);
-        const a = (s.opacity + prox * 0.18) * pulse;
+        const a = (s.opacity + prox * 0.06) * pulse;
 
         polygon(s.x, s.y, s.sides, s.size, s.angle);
         ctx.strokeStyle = pal.geo(s.hue, a);

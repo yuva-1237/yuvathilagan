@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import SectionBlock from './SectionBlock';
 import { Award } from 'lucide-react';
 import Carousel, { CarouselItemData } from './ReactBitsCarousel';
+import { motion } from 'framer-motion';
 
 type Category = 'All' | 'Achievement' | 'Certification';
 
-const achievements: {
+interface AchievementData {
   title: string;
   issuer: string;
   date: string;
@@ -13,7 +14,10 @@ const achievements: {
   image: string;
   category: Exclude<Category, 'All'>;
   tag: string;
-}[] = [
+  skills: string[];
+}
+
+const achievements: AchievementData[] = [
   {
     title: 'Multi-Domain Internship Experience',
     issuer: 'Professional Development',
@@ -24,6 +28,7 @@ const achievements: {
       'https://placehold.co/600x400/000000/FFFFFF/png?text=Internship+Experience',
     category: 'Achievement',
     tag: 'Internships',
+    skills: ['Data Analytics', 'UI Development', 'Graphic Design', 'Software Development'],
   },
   {
     title: 'Academic Project Leadership',
@@ -35,6 +40,7 @@ const achievements: {
       'https://placehold.co/600x400/000000/FFFFFF/png?text=Project+Leadership',
     category: 'Achievement',
     tag: 'Leadership',
+    skills: ['Team Leadership', 'Project Planning', 'Mentoring', 'Agile'],
   },
   {
     title: 'Hackathon & Technical Event Participation',
@@ -45,6 +51,7 @@ const achievements: {
     image: 'https://placehold.co/600x400/000000/FFFFFF/png?text=Hackathons',
     category: 'Achievement',
     tag: 'Innovation',
+    skills: ['Rapid Prototyping', 'Hackathons', 'Problem Solving', 'Collaboration'],
   },
   {
     title: 'Professional Certifications',
@@ -55,6 +62,7 @@ const achievements: {
     image: 'https://placehold.co/600x400/000000/FFFFFF/png?text=Certifications',
     category: 'Achievement',
     tag: 'Certification',
+    skills: ['Full Stack', 'Python', 'SQL', 'AI Fundamentals', 'Java', 'C/C++'],
   },
   {
     title: 'Technical Certification Portfolio',
@@ -66,6 +74,7 @@ const achievements: {
       'https://placehold.co/600x400/000000/FFFFFF/png?text=Technical+Certifications',
     category: 'Achievement',
     tag: 'Certification',
+    skills: ['Data Analytics', 'AI', 'Database Technologies', 'Programming'],
   },
   {
     title: 'Communication & Collaboration',
@@ -76,6 +85,7 @@ const achievements: {
     image: 'https://placehold.co/600x400/000000/FFFFFF/png?text=Communication',
     category: 'Achievement',
     tag: 'Soft Skills',
+    skills: ['Communication', 'Presentation', 'Negotiation', 'Team Collaboration'],
   },
   {
     title: 'Time Management & Adaptability',
@@ -87,6 +97,7 @@ const achievements: {
       'https://placehold.co/600x400/000000/FFFFFF/png?text=Time+Management',
     category: 'Achievement',
     tag: 'Productivity',
+    skills: ['Time Management', 'Prioritization', 'Workplace Readiness', 'Adaptability'],
   },
   {
     title: '30+ Public GitHub Repositories',
@@ -98,6 +109,7 @@ const achievements: {
       'https://placehold.co/600x400/000000/FFFFFF/png?text=GitHub+Portfolio',
     category: 'Achievement',
     tag: 'Repositories',
+    skills: ['Git/GitHub', 'Open Source', 'Repository Management', 'Version Control'],
   },
   {
     title: 'Data Analytics Leadership',
@@ -108,6 +120,7 @@ const achievements: {
     image: 'https://placehold.co/600x400/000000/FFFFFF/png?text=Data+Analytics',
     category: 'Achievement',
     tag: 'Data',
+    skills: ['Exploratory Data Analysis', 'Data Visualization', 'Pandas', 'FIFA Analytics'],
   },
   {
     title: 'Web Deployment & Automation',
@@ -118,35 +131,31 @@ const achievements: {
     image: 'https://placehold.co/600x400/000000/FFFFFF/png?text=Web+Deployment',
     category: 'Achievement',
     tag: 'Web',
+    skills: ['Web Deployment', 'Automation', 'Playwright', 'Web Scraping'],
   },
 ];
 
 const CATEGORIES: Category[] = ['All', 'Achievement', 'Certification'];
 
-const categoryAccent: Record<Exclude<Category, 'All'>, string> = {
-  Certification: 'bg-primary text-primary-foreground',
-  Achievement: 'bg-primary text-primary-foreground',
-};
-
-const categoryBorder: Record<Exclude<Category, 'All'>, string> = {
-  Certification: 'border-primary',
-  Achievement: 'border-primary',
-};
-
 const AchievementsSection = () => {
   const [active, setActive] = useState<Category>('All');
-  const [carouselWidth, setCarouselWidth] = useState(400);
+  const [carouselWidth, setCarouselWidth] = useState(880);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 480) {
-        setCarouselWidth(300);
-      } else if (window.innerWidth < 768) {
-        setCarouselWidth(340);
-      } else if (window.innerWidth < 1024) {
-        setCarouselWidth(380);
+      const w = window.innerWidth;
+      if (w < 768) {
+        // Mobile: 92% of viewport
+        setCarouselWidth(Math.floor(w * 0.92));
+      } else if (w < 1024) {
+        // Tablet: 700px
+        setCarouselWidth(700);
+      } else if (w < 1440) {
+        // Laptop: 800px
+        setCarouselWidth(800);
       } else {
-        setCarouselWidth(420);
+        // Desktop: 880px
+        setCarouselWidth(880);
       }
     };
 
@@ -167,42 +176,59 @@ const AchievementsSection = () => {
   }));
 
   return (
-    <SectionBlock id="achievements" title="Achievements">
-      {/* ── Top bar ──────────────────────────────────────────────── */}
-      <div className="mb-8 pb-6 border-b-2 border-primary/20 space-y-4">
-        {/* Stats row */}
-        <div className="flex items-center gap-3">
-          <Award className="w-4 h-4 shrink-0" />
+    <SectionBlock id="achievements" title="">
+      {/* Custom Header Section */}
+      <div className="flex flex-col items-center md:items-start mb-[clamp(12px,2.5vw,24px)] select-none">
+        <motion.h2
+          className="section-title text-center md:text-left mb-3"
+          initial={{ opacity: 0, y: -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          Achievements.
+        </motion.h2>
+
+        <div className="flex items-center justify-center md:justify-start gap-3 mt-1 text-foreground/60">
+          <Award className="w-4 h-4 text-primary shrink-0 animate-pulse" />
           <span className="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase">
             {achievements.length} Achievements
           </span>
-          <span className="font-mono text-xs text-foreground/45">
+          <span className="font-mono text-xs text-foreground/40">
             / {filtered.length} shown
           </span>
         </div>
+      </div>
 
-        {/* Filter pills — horizontally scrollable on mobile */}
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`font-mono text-[10px] sm:text-[11px] tracking-widest uppercase px-3 sm:px-4 py-1.5 border-2 transition-all duration-200 whitespace-nowrap shrink-0 ${
-                active === cat
-                  ? 'bg-primary text-primary-foreground border-primary shadow-[3px_3px_0px_0px_rgba(0,0,0,0.25)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,0.25)]'
-                  : 'bg-background text-foreground border-primary/25 hover:border-primary hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+      {/* Filter pills — grid on mobile (equal width), flex on desktop */}
+      <div className="mb-8 pb-6 border-b border-primary/20">
+        <div className="grid grid-cols-3 md:flex md:flex-row gap-3 w-full md:w-auto justify-center md:justify-start">
+          {CATEGORIES.map((cat) => {
+            const displayLabel = cat === 'All' ? 'ALL' : cat === 'Achievement' ? 'ACHIEVEMENTS' : 'CERTIFICATIONS';
+            return (
+              <button
+                key={cat}
+                onClick={() => setActive(cat)}
+                className={`font-mono text-[10px] sm:text-xs tracking-widest uppercase h-[44px] px-3 sm:px-6 rounded-[8px] border-[1.5px] transition-all duration-300 flex items-center justify-center select-none cursor-pointer ${
+                  active === cat
+                    ? 'bg-primary text-primary-foreground border-primary font-black shadow-[0_0_14px_var(--portfolio-accent-hex)]'
+                    : 'bg-transparent text-foreground/60 border-primary/25 hover:border-primary/80 hover:text-foreground hover:-translate-y-[2px] hover:shadow-[0_0_10px_var(--portfolio-accent-hex)]'
+                }`}
+                style={{
+                  minHeight: '44px',
+                }}
+              >
+                {displayLabel}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* ── Carousel Container ─────────────────────────────── */}
       {filtered.length > 0 ? (
-        <div className="relative border-t-2 border-primary pt-10 pb-6 flex items-center justify-center min-h-[500px]">
-          <div style={{ height: '480px', position: 'relative' }} className="w-full flex items-center justify-center">
+        <div className="relative border-t border-primary/20 pt-8 pb-6 flex items-center justify-center">
+          <div className="w-full flex items-center justify-center h-[460px] sm:h-[500px] md:h-[540px] lg:h-[600px] relative overflow-visible">
             <Carousel
               items={carouselItems}
               baseWidth={carouselWidth}
@@ -216,7 +242,7 @@ const AchievementsSection = () => {
         </div>
       ) : (
         /* ── Empty state */
-        <div className="flex flex-col items-center justify-center py-16 sm:py-24 border-t-2 border-b-2 border-primary text-foreground/30">
+        <div className="flex flex-col items-center justify-center py-16 sm:py-24 border-t border-b border-primary/20 text-foreground/30">
           <Award className="w-10 h-10 mb-3 opacity-20" />
           <p className="font-mono text-sm">No certificates in this category</p>
         </div>

@@ -12,6 +12,7 @@ export interface CarouselItemData {
   category: 'Achievement' | 'Certification';
   tag: string;
   id: number;
+  skills?: string[];
 }
 
 export interface CarouselProps {
@@ -26,7 +27,7 @@ export interface CarouselProps {
 
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
-const GAP = 16;
+const GAP = 20;
 const SPRING_OPTIONS = { type: 'spring' as const, stiffness: 300, damping: 30 };
 
 interface CarouselItemProps {
@@ -64,9 +65,9 @@ function CarouselItem({
       key={`${item?.id ?? index}-${index}`}
       className={`relative shrink-0 flex flex-col ${
         round
-          ? 'items-center justify-center text-center bg-background border-2 border-primary'
-          : 'items-start justify-between bg-[#0a0a0c] border-2 border-primary rounded-[12px] shadow-[4px_4px_0px_0px_rgba(0,180,216,0.3)] dark:shadow-[4px_4px_0px_0px_rgba(0,245,212,0.15)]'
-      } overflow-hidden cursor-grab active:cursor-grabbing`}
+          ? 'items-center justify-center text-center bg-background border border-primary/20 rounded-full'
+          : 'bg-[#050508]/85 backdrop-blur-md border-[1.5px] md:border-[2px] border-primary/30 dark:border-primary/20 hover:border-primary/80 rounded-[16px] shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(0,245,212,0.18)] hover:-translate-y-[6px] transition-all duration-300 ease-out cursor-grab active:cursor-grabbing'
+      } overflow-hidden select-none`}
       style={{
         width: itemWidth,
         height: round ? itemWidth : '100%',
@@ -75,71 +76,101 @@ function CarouselItem({
       }}
       transition={transition}
     >
-      {!round && (
-        <div className="w-full h-44 shrink-0 overflow-hidden relative border-b-2 border-primary">
-          <img
-            src={item.image}
-            alt={item.title}
-            className="w-full h-full object-cover object-top select-none pointer-events-none"
-          />
-          {/* Subtle Cyberpunk Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-black/40 to-transparent" />
-
-          {/* Top Info Bar on Card Image */}
-          <div className="absolute top-3 left-3 flex items-center gap-2">
-            <span className="font-mono text-[10px] font-bold bg-[#0a0a0c] text-foreground border border-primary px-2 py-0.5 leading-none">
-              {String(item.id + 1).padStart(2, '0')}
+      {!round ? (
+        <div className="grid grid-rows-[auto_auto_auto_auto_1fr_auto_auto] gap-[clamp(12px,2vw,20px)] p-[clamp(20px,4.5vw,40px)] h-full w-full">
+          {/* Row 1: Top Row (Badge, Category, Status) */}
+          <div className="flex items-center justify-between w-full">
+            {/* Tag Badge */}
+            <span className="inline-flex items-center justify-center font-mono text-[clamp(10px,1.3vw,12px)] font-bold border border-primary/30 bg-primary/10 text-primary px-3 py-1 rounded-full h-[clamp(24px,3vw,30px)] uppercase tracking-wider select-none">
+              {item.tag}
             </span>
-            <span className="font-mono text-[9px] font-black bg-primary text-primary-foreground border border-primary px-2 py-0.5 leading-none uppercase">
+            {/* Category */}
+            <span className="font-mono text-[clamp(10px,1.3vw,12px)] font-black text-foreground/75 tracking-widest uppercase">
               {item.category}
             </span>
-          </div>
-
-          <div className="absolute top-3 right-3">
-            <span className="font-mono text-[9px] tracking-widest uppercase bg-[#0a0a0c] text-foreground border border-primary/45 px-2 py-0.5 leading-none">
+            {/* Date Badge (Status) */}
+            <span className="inline-flex items-center justify-center font-mono text-[clamp(10px,1.3vw,12px)] font-bold border border-foreground/20 bg-foreground/5 text-foreground/70 px-3 py-1 rounded-full h-[clamp(24px,3vw,30px)] uppercase tracking-wider select-none">
               {item.date}
             </span>
           </div>
-        </div>
-      )}
 
-      {/* Card Content Area */}
-      <div className="p-5 flex-1 flex flex-col justify-between w-full">
-        <div>
-          {/* Icon & tag header */}
-          {!round && (
-            <div className="flex justify-between items-center mb-3">
-              <span className="font-mono text-[9px] border border-primary/20 bg-background/50 px-2 py-0.5 text-foreground/60">
-                {item.tag}
-              </span>
-              <CategoryIcon className="w-4 h-4 text-primary shrink-0" />
-            </div>
-          )}
-
-          {round && (
-            <div className="flex justify-center mb-2">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-background border border-primary">
-                <CategoryIcon className="h-5 w-5 text-primary shrink-0" />
-              </span>
-            </div>
-          )}
-
-          {/* Title & Issuer */}
+          {/* Row 2: Large Title */}
           <div>
-            <h3 className="font-black text-sm md:text-base leading-tight tracking-tight text-foreground line-clamp-2 uppercase">
+            <h3 
+              className="font-black leading-tight tracking-tight text-foreground uppercase select-text" 
+              style={{ fontSize: 'clamp(24px, 3.2vw, 42px)' }}
+            >
+              {item.title}
+            </h3>
+          </div>
+
+          {/* Row 3: Divider */}
+          <div className="w-full border-t border-primary/25" />
+
+          {/* Row 4: Metadata (Issuer) */}
+          <div>
+            <p 
+              className="font-mono text-foreground/55 tracking-wider uppercase select-text" 
+              style={{ fontSize: 'clamp(12px, 1.5vw, 14px)' }}
+            >
+              {item.issuer}
+            </p>
+          </div>
+
+          {/* Row 5: Description */}
+          <div className="overflow-hidden flex items-start">
+            <p 
+              className="font-normal text-foreground/80 leading-[1.8] max-w-[90%] select-text" 
+              style={{ fontSize: 'clamp(14px, 1.6vw, 17px)' }}
+            >
+              {item.description}
+            </p>
+          </div>
+
+          {/* Row 6: Skills */}
+          {item.skills && item.skills.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 items-center select-none pt-2 border-t border-foreground/5">
+              <span className="font-mono text-[clamp(10px,1.4vw,11px)] text-foreground/40 uppercase tracking-widest mr-1">
+                Skills:
+              </span>
+              {item.skills.map((skill) => (
+                <span 
+                  key={skill} 
+                  className="font-mono text-[clamp(9px,1.2vw,10.5px)] font-bold border border-primary/10 bg-primary/5 text-primary/80 px-2 py-0.5 rounded-sm"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Row 7: Footer */}
+          <div className="flex justify-between items-center w-full border-t border-foreground/5 pt-3 mt-auto select-none">
+            <span className="font-mono text-[clamp(10px,1.4vw,12px)] text-foreground/30">
+              // 0{item.id + 1}
+            </span>
+            <CategoryIcon className="w-4 h-4 text-primary opacity-40 shrink-0" />
+          </div>
+        </div>
+      ) : (
+        /* Support round layout for fallback/consistency if round=true is passed */
+        <div className="p-5 flex-1 flex flex-col justify-between items-center text-center w-full">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-background border border-primary">
+            <CategoryIcon className="h-5 w-5 text-primary shrink-0" />
+          </div>
+          <div>
+            <h3 className="font-black text-sm leading-tight text-foreground line-clamp-2 uppercase">
               {item.title}
             </h3>
             <p className="font-mono text-[10px] text-foreground/55 mt-1">
               {item.issuer}
             </p>
           </div>
+          <p className="text-xs text-foreground/80 line-clamp-3 leading-relaxed mt-2 border-t border-primary/10 pt-2">
+            {item.description}
+          </p>
         </div>
-
-        {/* Description */}
-        <p className="text-xs text-foreground/80 line-clamp-3 leading-relaxed mt-4 border-t border-primary/10 pt-3">
-          {item.description}
-        </p>
-      </div>
+      )}
     </motion.div>
   );
 }
@@ -286,69 +317,65 @@ export default function Carousel({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden p-4 mx-auto ${
-        round
-          ? 'rounded-full border border-primary'
-          : 'rounded-[24px] border border-primary/20 bg-background/30'
-      }`}
+      className="relative overflow-visible mx-auto w-full flex flex-col items-center gap-3 select-none"
       style={{
-        width: `${baseWidth}px`,
-        ...(round && { height: `${baseWidth}px` }),
+        maxWidth: `${baseWidth + 32}px`,
       }}
     >
-      <motion.div
-        className="flex h-full"
-        drag={isAnimating ? false : 'x'}
-        {...dragProps}
+      <div 
+        className="overflow-hidden py-3 px-4 w-full flex justify-center"
         style={{
-          width: itemWidth,
-          gap: `${GAP}px`,
-          perspective: 1000,
-          perspectiveOrigin: `${position * trackItemOffset + itemWidth / 2}px 50%`,
-          x,
+          width: '100%',
         }}
-        onDragEnd={handleDragEnd}
-        animate={{ x: -(position * trackItemOffset) }}
-        transition={effectiveTransition}
-        onAnimationStart={handleAnimationStart}
-        onAnimationComplete={handleAnimationComplete}
       >
-        {itemsForRender.map((item, index) => (
-          <CarouselItem
-            key={`${item?.id ?? index}-${index}`}
-            item={item}
-            index={index}
-            itemWidth={itemWidth}
-            round={round}
-            trackItemOffset={trackItemOffset}
-            x={x}
-            transition={effectiveTransition}
-          />
-        ))}
-      </motion.div>
-      
-      {/* Navigation Indicators */}
-      {items.length > 1 && (
-        <div
-          className={`flex w-full justify-center ${
-            round ? 'absolute z-20 bottom-12 left-1/2 -translate-x-1/2' : 'mt-4'
-          }`}
+        <motion.div
+          className="flex h-full"
+          drag={isAnimating ? false : 'x'}
+          {...dragProps}
+          style={{
+            width: itemWidth,
+            gap: `${GAP}px`,
+            perspective: 1000,
+            perspectiveOrigin: `${position * trackItemOffset + itemWidth / 2}px 50%`,
+            x,
+          }}
+          onDragEnd={handleDragEnd}
+          animate={{ x: -(position * trackItemOffset) }}
+          transition={effectiveTransition}
+          onAnimationStart={handleAnimationStart}
+          onAnimationComplete={handleAnimationComplete}
         >
-          <div className="flex gap-2.5 px-4 py-1.5 bg-[#0a0a0c]/60 border border-primary/10 rounded-full select-none">
+          {itemsForRender.map((item, index) => (
+            <CarouselItem
+              key={`${item?.id ?? index}-${index}`}
+              item={item}
+              index={index}
+              itemWidth={itemWidth}
+              round={round}
+              trackItemOffset={trackItemOffset}
+              x={x}
+              transition={effectiveTransition}
+            />
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Navigation Indicators outside card */}
+      {items.length > 1 && (
+        <div className="flex w-full justify-center select-none mt-2">
+          <div className="flex gap-[12px] px-4 py-2 bg-[#050508]/80 border border-primary/20 rounded-full items-center">
             {items.map((_, index) => (
               <motion.button
                 type="button"
                 key={index}
                 aria-label={`Go to slide ${index + 1}`}
                 aria-current={activeIndex === index}
-                className={`h-2 w-2 rounded-full cursor-pointer border-0 p-0 appearance-none transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+                className={`rounded-full cursor-pointer border-0 p-0 appearance-none transition-all duration-300 w-[10px] h-[10px] md:w-[14px] md:h-[14px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
                   activeIndex === index
-                    ? 'bg-primary'
-                    : 'bg-primary/20 hover:bg-primary/45'
+                    ? 'bg-primary shadow-[0_0_8px_rgba(0,245,212,0.6)]'
+                    : 'bg-primary/20 hover:bg-primary/50'
                 }`}
-                animate={{
-                  scale: activeIndex === index ? 1.25 : 1,
-                }}
+                whileHover={{ scale: 1.25 }}
                 onClick={() => setPosition(loop ? index + 1 : index)}
                 transition={{ duration: 0.15 }}
               />
