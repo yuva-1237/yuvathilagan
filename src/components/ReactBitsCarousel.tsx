@@ -360,29 +360,6 @@ export default function Carousel({
         </motion.div>
       </div>
 
-      {/* Navigation Indicators outside card */}
-      {items.length > 1 && (
-        <div className="flex w-full justify-center select-none mt-2">
-          <div className="flex gap-[12px] px-4 py-2 bg-[#050508]/80 border border-primary/20 rounded-full items-center">
-            {items.map((_, index) => (
-              <motion.button
-                type="button"
-                key={index}
-                aria-label={`Go to slide ${index + 1}`}
-                aria-current={activeIndex === index}
-                className={`rounded-full cursor-pointer border-0 p-0 appearance-none transition-all duration-300 w-[10px] h-[10px] md:w-[14px] md:h-[14px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
-                  activeIndex === index
-                    ? 'bg-primary shadow-[0_0_8px_rgba(0,245,212,0.6)]'
-                    : 'bg-primary/20 hover:bg-primary/50'
-                }`}
-                whileHover={{ scale: 1.25 }}
-                onClick={() => setPosition(loop ? index + 1 : index)}
-                transition={{ duration: 0.15 }}
-              />
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
